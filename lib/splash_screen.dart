@@ -1,0 +1,30 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+// import 'package:buddy_app/theme/color_palette.dart';
+import 'package:flutter/material.dart';
+// import 'screens/home.dart';
+import 'screens/login.dart';
+
+class Splash extends StatelessWidget {
+  const Splash({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: AnimatedSplashScreen(
+        splash: Center(
+          child: Container(
+            width: 500,
+            height: 350,
+            child: Image.asset('assets/images/splash.png'),
+          ),
+        ),
+        nextScreen: const Login(),
+        duration: 3000,
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.white,
+      ),
+    );
+  }
+}
