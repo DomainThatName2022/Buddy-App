@@ -1,0 +1,4 @@
+#Sat Apr 23 22:09:40 CAT 2022
+base.0=E\:\\DomainThatName\\Buddy\\Flutter-Buddy-App\\buddy_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

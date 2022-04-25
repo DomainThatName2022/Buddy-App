@@ -1,6 +1,10 @@
+import 'package:buddy_app/components/custom_image.dart';
+import 'package:buddy_app/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 import '../theme/color_palette.dart';
+import '../components/custom_button.dart';
+import '../components/custom_text_field.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -13,6 +17,14 @@ class _LoginState extends State<Login> {
   //import color palette
   final colors = const ColorPalette();
 
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,19 +33,13 @@ class _LoginState extends State<Login> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 70.0),
+              padding: const EdgeInsets.only(top: 70),
               child: Center(
-                child: Container(
-                    width: 214,
-                    height: 151,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('assets/images/good_dog.png')),
+                child: CustomImage('assets/images/good_dog.png', 151.0, 214.0),
               ),
             ),
             const Padding(
-              padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              padding: EdgeInsets.only(top: 20),
               child: Center(
                 child: Text(
                   'Please log in',
@@ -44,57 +50,40 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            const Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.fromLTRB(40, 20, 40, 0),
-              child: TextField(
-                decoration: InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter valid email: abc@gmail.com'),
-              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+              child: CustomTextField('abc@gmail.com', 'Email'),
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(40, 50, 40, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(40, 50, 40, 0),
               child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Enter secure password',
-                    // icon: Icon(Icons.visibility),
+                    suffixIcon: GestureDetector(
+                      onTap: _togglePasswordView,
+                      child: Icon(
+                        _isHidden ? Icons.visibility : Icons.visibility_off,
+                        color: colors.gray,
+                      ),
+                    ),
                   )),
             ),
 
             //Login Button
             Padding(
-              padding: const EdgeInsets.only(top: 40.0),
-              child: Container(
-                height: 58,
-                width: 323,
-                // decoration: BoxDecoration(
-                //     color: colors.gray, borderRadius: BorderRadius.circular(20)),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const HomePage(
-                                  title: 'Home',
-                                )));
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(colors.gray),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ))),
-                  child: const Text(
+                padding: const EdgeInsets.only(top: 40),
+                child: Button(
                     'Login',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ),
-              ),
-            ),
+                    () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const HomePage(
+                                        title: 'Home',
+                                      )))
+                        })),
 
             //Remember me Checkbox
             Padding(
@@ -105,7 +94,13 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.only(right: 5),
                     child: Column(
-                      children: const [Icon(Icons.check_box_outline_blank)],
+                      children: [
+                        // Icon(Icons.check_box_outline_blank)
+                        Icon(
+                          Icons.check_box_outline_blank,
+                          color: colors.gray,
+                        ),
+                      ],
                     ),
                   ),
                   Column(
@@ -187,11 +182,10 @@ class _LoginState extends State<Login> {
               ]),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+              padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
               child: Divider(
                 thickness: 1,
                 color: colors.gray,
-                height: 50,
               ),
             ),
 
@@ -200,9 +194,23 @@ class _LoginState extends State<Login> {
               child: Center(
                 child: Expanded(
                     child: Row(
-                  children: const <Widget>[
-                    Text('Dont have an account yet?'),
-                    FlatButton(onPressed: null, child: Text('Sign in'))
+                  children: <Widget>[
+                    const Text('Dont have an account yet?'),
+                    FlatButton(
+                        onPressed: () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const Register()))
+                            },
+                        child: const Text(
+                          'Sign up',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ))
                   ],
                 )),
               ),
