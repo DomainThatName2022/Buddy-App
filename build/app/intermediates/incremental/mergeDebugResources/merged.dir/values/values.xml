@@ -90,6 +90,13 @@
     <item name="text2" type="id"/>
     <item name="title" type="id"/>
     <integer name="status_bar_notification_info_maxnum">999</integer>
+    <string name="default_web_client_id" translatable="false">259771989535-gj21sg9832fm6u91t2bfn0oujuk29b8p.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">259771989535</string>
+    <string name="google_api_key" translatable="false">AIzaSyBXv15-rcVszvf7nXCqnLwzmsZBCU4dNjc</string>
+    <string name="google_app_id" translatable="false">1:259771989535:android:b558e94b520fddbab75f2a</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBXv15-rcVszvf7nXCqnLwzmsZBCU4dNjc</string>
+    <string name="google_storage_bucket" translatable="false">emailpasswordauth-13830.appspot.com</string>
+    <string name="project_id" translatable="false">emailpasswordauth-13830</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <!-- Show a splash screen on the activity. Automatically removed when

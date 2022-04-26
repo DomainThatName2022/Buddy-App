@@ -35,7 +35,7 @@ class Button extends StatelessWidget {
             ))),
         child: Text(
           buttonText,
-          style: const TextStyle(color: Colors.white, fontSize: 20),
+          style: const TextStyle(color: Colors.white, fontSize: 15),
         ),
       ),
     );

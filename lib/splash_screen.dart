@@ -16,11 +16,10 @@ class Splash extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: Center(
           child: Container(
-            width: 500,
-            height: 350,
             child: Image.asset('assets/images/splash.png'),
           ),
         ),
+        splashIconSize: 120,
         nextScreen: const Login(),
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
