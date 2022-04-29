@@ -1,6 +1,10 @@
 import 'dart:ui';
 
+import 'package:buddy_app/model/user.dart';
+import 'package:buddy_app/screens/login.dart';
 import 'package:buddy_app/theme/color_palette.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,7 +15,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final colors = ColorPalette();
+  final colors = const ColorPalette();
+
+  User? user = FirebaseAuth.instance.currentUser;
+
+  UserModel loggedInUser = UserModel();
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser = UserModel.fromMap(value.data());
+      setState(() {});
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,28 +74,38 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 20,
               ),
-              const Text(
-                'Name',
-                style: TextStyle(
-                    fontSize: 15,
+              Text(
+                "${loggedInUser.firstName} ${loggedInUser.secondName}",
+                style: const TextStyle(
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.black),
               ),
-              const Text(
-                'Email',
-                style: TextStyle(
-                    fontSize: 15,
+              Text(
+                "${loggedInUser.email}",
+                style: const TextStyle(
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.black),
               ),
               const SizedBox(
                 height: 20,
               ),
-              ActionChip(label: const Text('Logout'), onPressed: () {})
+              ActionChip(
+                  label: const Text('Logout'),
+                  onPressed: () {
+                    logout(context);
+                  })
             ],
           ),
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const Login()));
   }
 }

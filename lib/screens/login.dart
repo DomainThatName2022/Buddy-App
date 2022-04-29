@@ -42,12 +42,12 @@ class _LoginState extends State<Login> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please Enter a valid email");
+          return ("Please enter a valid email");
         }
 
         // reg expression for email validation
         if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-          return ("Please Enter a valid email");
+          return ("Please enter a valid email");
         }
 
         return null;
@@ -77,7 +77,7 @@ class _LoginState extends State<Login> {
         }
 
         if (!regex.hasMatch(value)) {
-          return ("Please Enter valid Password(Min. 6 characters)");
+          return ("Please enter valid Password(Min. 6 characters)");
         }
         return null;
       },

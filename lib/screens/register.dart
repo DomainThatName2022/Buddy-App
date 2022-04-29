@@ -47,7 +47,7 @@ class _RegisterState extends State<Register> {
       keyboardType: TextInputType.name,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please Enter First Name");
+          return ("Please enter First Name");
         }
 
         return null;
@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
       keyboardType: TextInputType.name,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please Enter Last Name");
+          return ("Please enter Last Name");
         }
 
         return null;
@@ -97,7 +97,7 @@ class _RegisterState extends State<Register> {
       keyboardType: TextInputType.emailAddress,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please Enter a valid email");
+          return ("Please enter a valid email");
         }
 
         // reg expression for email validation
@@ -163,7 +163,7 @@ class _RegisterState extends State<Register> {
         }
 
         if (!regex.hasMatch(value)) {
-          return ("Please Enter valid Password(Min. 6 characters)");
+          return ("Please enter valid Password(Min. 6 characters)");
         }
         return null;
       },
