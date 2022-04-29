@@ -1,8 +1,10 @@
 import 'package:buddy_app/components/custom_image.dart';
 import 'package:buddy_app/screens/register.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'home.dart';
 import '../theme/color_palette.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -22,6 +24,12 @@ class _LoginState extends State<Login> {
   //import color palette
   final colors = const ColorPalette();
 
+  //Firebase
+  final _auth = FirebaseAuth.instance;
+
+  // string for displaying the error Message
+  String? errorMessage;
+
   bool _isHidden = true;
   bool _isChecked = false;
 
@@ -32,11 +40,21 @@ class _LoginState extends State<Login> {
       autofocus: false,
       controller: emailcontroller,
       keyboardType: TextInputType.emailAddress,
-      // validator: (){},
+      validator: (value) {
+        if (value!.isEmpty) {
+          return ("Please Enter a valid email");
+        }
+
+        // reg expression for email validation
+        if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+          return ("Please Enter a valid email");
+        }
+
+        return null;
+      },
       onSaved: (value) {
         emailcontroller.text = value!;
       },
-
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
           prefixIcon: Icon(
@@ -51,11 +69,21 @@ class _LoginState extends State<Login> {
       autofocus: false,
       obscureText: _isHidden,
       controller: passwordcontroller,
-      // validator: (){},
+      validator: (value) {
+        RegExp regex = RegExp(r'^.{6,}$');
+
+        if (value!.isEmpty) {
+          return ("Password is required for login");
+        }
+
+        if (!regex.hasMatch(value)) {
+          return ("Please Enter valid Password(Min. 6 characters)");
+        }
+        return null;
+      },
       onSaved: (value) {
         passwordcontroller.text = value!;
       },
-
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         prefixIcon: Icon(
@@ -81,8 +109,7 @@ class _LoginState extends State<Login> {
       color: colors.gray,
       child: MaterialButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => const HomePage()));
+          signIn(emailcontroller.text, passwordcontroller.text);
         },
         minWidth: MediaQuery.of(context).size.width,
         height: 58,
@@ -103,7 +130,7 @@ class _LoginState extends State<Login> {
             Padding(
               padding: const EdgeInsets.only(top: 70),
               child: Center(
-                child: CustomImage('assets/images/good_dog.png', 151.0, 214.0),
+                child: CustomImage('assets/images/good_dog.png', 200.0, 250.0),
               ),
             ),
             const Padding(
@@ -282,16 +309,20 @@ class _LoginState extends State<Login> {
             const SizedBox(
               height: 20,
             ),
+
             Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: GestureDetector(
-                onTap: () {},
-                child: const Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold),
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
             ),
@@ -312,5 +343,46 @@ class _LoginState extends State<Login> {
     setState(() {
       _isChecked = !_isChecked;
     });
+  }
+
+  // login function
+  void signIn(String email, String password) async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await _auth
+            .signInWithEmailAndPassword(email: email, password: password)
+            .then((uid) => {
+                  Fluttertoast.showToast(msg: "Login Successful"),
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const HomePage())),
+                });
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+
+            break;
+          case "wrong-password":
+            errorMessage = "Incorrect Password.";
+            break;
+          case "user-not-found":
+            errorMessage = "User with this email doesn't exist.";
+            break;
+          case "user-disabled":
+            errorMessage = "User with this email has been disabled.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "An undefined Error happened.";
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        debugPrint(error.code);
+      }
+    }
   }
 }
