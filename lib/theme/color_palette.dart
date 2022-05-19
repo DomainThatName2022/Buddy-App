@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class ColorPalette {
   //Color pallettes
   final scallopSeashell = const Color(0xFFE7D2CC);
+  final ivory = const Color(0xFFEEEDE7);
   final pewter = const Color.fromRGBO(185, 183, 189, 0.14);
   final gray = const Color(0xFFB9B7BD);
 

@@ -1,3 +1,4 @@
+import 'package:buddy_app/components/loading.dart';
 import 'package:buddy_app/model/user.dart';
 import 'package:buddy_app/screens/login.dart';
 import 'package:buddy_app/screens/registration_successful.dart';
@@ -38,6 +39,8 @@ class _RegisterState extends State<Register> {
 
   String errorMessage = "";
 
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     //first name field
@@ -45,6 +48,7 @@ class _RegisterState extends State<Register> {
       autofocus: false,
       controller: firstNameEditingController,
       keyboardType: TextInputType.name,
+      textCapitalization: TextCapitalization.sentences,
       validator: (value) {
         if (value!.isEmpty) {
           return ("Please enter First Name");
@@ -70,6 +74,7 @@ class _RegisterState extends State<Register> {
       autofocus: false,
       controller: lastNameEditingController,
       keyboardType: TextInputType.name,
+      textCapitalization: TextCapitalization.sentences,
       validator: (value) {
         if (value!.isEmpty) {
           return ("Please enter Last Name");
@@ -242,103 +247,106 @@ class _RegisterState extends State<Register> {
       ),
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: colors.scallopSeashell,
-            )),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Center(
-                child: CustomImage('assets/images/register.png', 151.0, 214.0),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Center(
-                child: Text(
-                  'Create an Account',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
-                child:
-                    // CustomTextField('abc@gmail.com', 'Email'),
-                    Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      firstNameField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      lastNameField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      emailField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      phoneNumberField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      passwordField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      confirmPasswordField,
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      signUpButton
-                    ],
-                  ),
-                )),
-            Padding(
-              padding: const EdgeInsets.only(top: 40, left: 40),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const Login()));
+    return loading
+        ? const Loading()
+        : Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              leading: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
                   },
-                  child: const Padding(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: colors.scallopSeashell,
+                  )),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Center(
+                      child: CustomImage(
+                          'assets/images/register.png', 151.0, 214.0),
                     ),
                   ),
-                ),
+                  const Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: Center(
+                      child: Text(
+                        'Create an Account',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
+                      child:
+                          // CustomTextField('abc@gmail.com', 'Email'),
+                          Form(
+                        key: _formKey,
+                        child: Column(
+                          children: <Widget>[
+                            firstNameField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            lastNameField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            emailField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            phoneNumberField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            passwordField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            confirmPasswordField,
+                            const SizedBox(
+                              height: 50,
+                            ),
+                            signUpButton
+                          ],
+                        ),
+                      )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40, left: 40),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => const Login()));
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 
   //Methods
@@ -356,14 +364,21 @@ class _RegisterState extends State<Register> {
 
   void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        loading = true;
+      });
       try {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) => {postDetailsToFirestore()})
             .catchError((e) {
-          Fluttertoast.showToast(msg: e!.message);
+          Fluttertoast.showToast(
+              msg: e!.message, backgroundColor: colors.scallopSeashell);
         });
       } on FirebaseAuthException catch (error) {
+        setState(() {
+          loading = false;
+        });
         switch (error.code) {
           case "invalid-email":
             errorMessage = "Your email address appears to be malformed.";
@@ -386,7 +401,8 @@ class _RegisterState extends State<Register> {
           default:
             errorMessage = "An undefined Error happened.";
         }
-        Fluttertoast.showToast(msg: errorMessage);
+        Fluttertoast.showToast(
+            msg: errorMessage, backgroundColor: colors.scallopSeashell);
         debugPrint(error.code);
       }
     }
@@ -413,7 +429,9 @@ class _RegisterState extends State<Register> {
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
-    Fluttertoast.showToast(msg: "Account created successfully :) ");
+    Fluttertoast.showToast(
+        msg: "Account created successfully!",
+        backgroundColor: colors.scallopSeashell);
 
     Navigator.pushAndRemoveUntil(
         (context),
