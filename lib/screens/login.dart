@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
         }
 
         if (!regex.hasMatch(value)) {
-          return ("Please enter valid Password(Min. 6 characters)");
+          return ("Please enter valid Password");
         }
         return null;
       },

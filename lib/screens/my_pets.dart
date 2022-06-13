@@ -1,5 +1,5 @@
 import 'package:buddy_app/components/my_pet_card.dart';
-import 'package:buddy_app/components/no_pets.dart';
+// import 'package:buddy_app/components/no_pets.dart';
 import 'package:buddy_app/screens/add_my_pets.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:flutter/material.dart';

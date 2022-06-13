@@ -11,11 +11,20 @@ class Loading extends StatelessWidget {
     const colors = ColorPalette();
 
     return Container(
-      color: Colors.white,
+      color: colors.ivory,
       child: Center(
-        child: SpinKitFadingCircle(
-          color: colors.scallopSeashell,
-          size: 80,
+        child: Container(
+          height: 200,
+          width: 200,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: colors.scallopSeashell),
+          child: const Center(
+            child: SpinKitFadingCircle(
+              color: Colors.white,
+              size: 80,
+            ),
+          ),
         ),
       ),
     );

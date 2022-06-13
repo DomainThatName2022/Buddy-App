@@ -287,9 +287,7 @@ class _RegisterState extends State<Register> {
                   ),
                   Padding(
                       padding: const EdgeInsets.fromLTRB(40, 30, 40, 0),
-                      child:
-                          // CustomTextField('abc@gmail.com', 'Email'),
-                          Form(
+                      child: Form(
                         key: _formKey,
                         child: Column(
                           children: <Widget>[
@@ -411,7 +409,7 @@ class _RegisterState extends State<Register> {
   postDetailsToFirestore() async {
     // calling our firestore
     // calling our user model
-    // sedning these values
+    // sending these values
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
