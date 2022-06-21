@@ -1,13 +1,13 @@
+import 'package:buddy_app/model/pet.dart';
 import 'package:flutter/material.dart';
 
 class MyPetCard extends StatelessWidget {
-  // const MyPetCard({Key? key}) : super(key: key);
-  final _petName;
-  final _desc;
-  final String _imagePath;
   final VoidCallback? _onTap;
 
-  MyPetCard(this._imagePath, this._desc, this._onTap, this._petName);
+  //PetModel
+  final PetModel _pet;
+
+  MyPetCard(this._onTap, this._pet);
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +18,29 @@ class MyPetCard extends StatelessWidget {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         child: ClipPath(
-          child: Container(
-            height: 100,
+          child: SizedBox(
+            height: 110,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Container(
-                          height: 76,
-                          width: 85,
+                          height: 80,
+                          width: 90,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                             color: Colors.blue[50],
                           ),
-                          child: Image.asset(_imagePath)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              "${_pet.mediaUrlList[0]}",
+                              fit: BoxFit.fill,
+                            ),
+                          )),
                     )
                   ],
                 ),
@@ -51,7 +57,7 @@ class MyPetCard extends StatelessWidget {
                             height: 25,
                             width: 180,
                             child: Text(
-                              _petName,
+                              "${_pet.name}",
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w800,
@@ -65,11 +71,11 @@ class MyPetCard extends StatelessWidget {
                         alignment: Alignment.bottomLeft,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 5),
-                          child: Container(
+                          child: SizedBox(
                             height: 45,
                             width: 175,
                             child: Text(
-                              _desc,
+                              "${_pet.description!.isEmpty ? "No Description to display" : _pet.description}",
                               style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400,

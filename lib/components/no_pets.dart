@@ -12,11 +12,10 @@ class NoPets extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 180),
-        child: Container(
+        padding: const EdgeInsets.only(top: 100),
+        child: SizedBox(
           height: 300,
           width: 300,
-          // color: Colors.red[50],
           child: Center(
             child: Column(
               children: [

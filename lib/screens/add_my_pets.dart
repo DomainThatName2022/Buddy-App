@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'dart:math';
+import 'package:buddy_app/components/animated_check.dart';
 import 'package:buddy_app/components/loading.dart';
+import 'package:buddy_app/screens/my_pets.dart';
 import 'package:path/path.dart' as Path;
 import 'package:buddy_app/components/custom_drop_down_menu.dart';
 import 'package:buddy_app/model/pet.dart';
@@ -42,6 +44,7 @@ class _AddMyPetsState extends State<AddMyPets> {
   //Firestore References
   final userRef = FirebaseFirestore.instance.collection('users');
   final petRef = FirebaseFirestore.instance.collection('pets');
+
   //controllers
   final petNameEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
@@ -94,7 +97,7 @@ class _AddMyPetsState extends State<AddMyPets> {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please enter Pet Name");
+          return ("Please enter pet name");
         }
 
         return null;
@@ -133,7 +136,8 @@ class _AddMyPetsState extends State<AddMyPets> {
         selectedPetType,
         ((value) => {
               setState(() => {selectedPetType = value})
-            }));
+            }),
+        ((value) => value == null ? 'Please select pet type' : null));
     //pet gender field
     final petGenderField = CustomDropDownMenu(
         _petGender,
@@ -141,7 +145,8 @@ class _AddMyPetsState extends State<AddMyPets> {
         selectedPetGender,
         ((value) => {
               setState(() => {selectedPetGender = value})
-            }));
+            }),
+        ((value) => value == null ? 'Please select pet gender' : null));
 
     //pet breed field
     final petBreedField = CustomDropDownMenu(
@@ -150,7 +155,8 @@ class _AddMyPetsState extends State<AddMyPets> {
         selectedPetBreed,
         ((value) => {
               setState(() => {selectedPetBreed = value})
-            }));
+            }),
+        ((value) => value == null ? 'Please select pet breed' : null));
 
     //year of birth
     final yearOfBirthField = GestureDetector(
@@ -162,7 +168,7 @@ class _AddMyPetsState extends State<AddMyPets> {
           keyboardType: TextInputType.name,
           validator: (value) {
             if (value!.isEmpty) {
-              return ("Please enter Pet Year Of Birth");
+              return ("Please enter pet year of birth");
             }
 
             return null;
@@ -206,7 +212,7 @@ class _AddMyPetsState extends State<AddMyPets> {
       textCapitalization: TextCapitalization.sentences,
       validator: (value) {
         if (value!.isEmpty) {
-          return ("Please enter Pet Name");
+          return ("Please enter pet address");
         }
 
         return null;
@@ -320,149 +326,170 @@ class _AddMyPetsState extends State<AddMyPets> {
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
                           height: 210,
                           width: 315,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Form(
-                            key: _formKey,
-                            child: Center(
-                              child:
-                                  // CustomImagePicker()
-                                  Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: colors.scallopSeashell,
-                                ),
-                                child: Stack(children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(4),
-                                    child: GridView.builder(
-                                        itemCount: _imageList.length + 1,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3),
-                                        itemBuilder: (context, index) {
-                                          return index == 0
-                                              ? Center(
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                        color: Colors.white),
-                                                    child: IconButton(
-                                                        icon: const Icon(
-                                                            Icons.add),
-                                                        onPressed: limitReached
-                                                            ? null
-                                                            : () =>
-                                                                chooseImage()),
-                                                  ),
-                                                )
-                                              : Container(
-                                                  margin:
-                                                      const EdgeInsets.all(5),
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: FileImage(
-                                                              _imageList[
-                                                                  index - 1]),
-                                                          fit: BoxFit.cover)),
-                                                );
-                                        }),
-                                  )
-                                ]),
+                          child: Center(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: colors.scallopSeashell,
                               ),
-                            ),
-                          )),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 30, left: 30, top: 5),
-                        child: Divider(
-                          color: Colors.grey,
-                          thickness: 1,
-                          height: 40,
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 40, top: 5),
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            'Pet Information',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w800,
+                              child: Stack(children: [
+                                Container(
+                                  padding: const EdgeInsets.all(4),
+                                  child: GridView.builder(
+                                      itemCount: _imageList.length + 1,
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 3),
+                                      itemBuilder: (context, index) {
+                                        return index == 0
+                                            ? Center(
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                      color: Colors.white),
+                                                  child: IconButton(
+                                                      icon:
+                                                          const Icon(Icons.add),
+                                                      onPressed: limitReached
+                                                          ? null
+                                                          : () =>
+                                                              chooseImage()),
+                                                ),
+                                              )
+                                            : Container(
+                                                margin: const EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: FileImage(
+                                                            _imageList[
+                                                                index - 1]),
+                                                        fit: BoxFit.cover)),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(12.0),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: SizedBox(
+                                                      height: 20,
+                                                      width: 20,
+                                                      // child: IconButton(
+                                                      //     icon: const Icon(
+                                                      //       Icons.delete,
+                                                      //       color: Colors.red,
+                                                      //     ),
+                                                      //     onPressed: () => {
+                                                      //           setState(
+                                                      //               () => {
+                                                      //                     _imageList
+                                                      //                         .remove(index)
+                                                      //                   }),
+                                                      //         }),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                      }),
+                                )
+                              ]),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(30.0),
-                        child: petNameField,
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 10),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.fromBorderSide(BorderSide(
-                                  color: colors.gray,
-                                  width: 1,
-                                )),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: petTypeField),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 40),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.fromBorderSide(BorderSide(
-                                  color: colors.gray,
-                                  width: 1,
-                                )),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: petGenderField),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 40),
-                        child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.fromBorderSide(BorderSide(
-                                  color: colors.gray,
-                                  width: 1,
-                                )),
-                                borderRadius: BorderRadius.circular(15)),
-                            child: petBreedField),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 40),
-                        child: yearOfBirthField,
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 40),
-                        child: addressField,
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 30, right: 30, top: 40),
-                        child: descField,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 30, right: 30, top: 40, bottom: 50),
-                        child: saveButton,
-                      )
-                    ],
+                        const Padding(
+                          padding: EdgeInsets.only(right: 30, left: 30, top: 5),
+                          child: Divider(
+                            color: Colors.grey,
+                            thickness: 1,
+                            height: 40,
+                          ),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 40, top: 5),
+                          child: Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              'Pet Information',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: petNameField,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 10),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.fromBorderSide(BorderSide(
+                                    color: colors.gray,
+                                    width: 1,
+                                  )),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: petTypeField),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.fromBorderSide(BorderSide(
+                                    color: colors.gray,
+                                    width: 1,
+                                  )),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: petGenderField),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.fromBorderSide(BorderSide(
+                                    color: colors.gray,
+                                    width: 1,
+                                  )),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: petBreedField),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40),
+                          child: yearOfBirthField,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40),
+                          child: addressField,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40),
+                          child: descField,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 30, right: 30, top: 40, bottom: 50),
+                          child: saveButton,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -524,9 +551,10 @@ class _AddMyPetsState extends State<AddMyPets> {
         limitReached = true;
       });
     }
-    // Fluttertoast.showToast(
-    //     msg: "Image limit reached", backgroundColor: colors.scallopSeashell);
-    if (pickedFile?.path == null) retrieveLostData();
+
+    if (pickedFile?.path == null) {
+      retrieveLostData();
+    }
   }
 
   Future<void> retrieveLostData() async {
@@ -561,19 +589,29 @@ class _AddMyPetsState extends State<AddMyPets> {
   }
 
   //Upload Image Files to Firebase
-  Future<List> uploadImageFiles(imagelist) async {
+  Future<List> uploadImageFiles(selectedPetType, imagelist) async {
     int cntr = 0;
     List downloadUrlsList = [];
     String downloadUrl;
     for (var file in imagelist) {
       int randomNumber = random.nextInt(100);
-      UploadTask uploadTask =
-          storageRef.child("Pets/pets_$petId$randomNumber.jpg").putFile(file);
-      TaskSnapshot storageSnap = await uploadTask;
-      downloadUrl = await storageSnap.ref.getDownloadURL();
-      cntr++;
-      print('Upload $cntr successful');
-      downloadUrlsList.add(downloadUrl);
+      if (selectedPetType == 'Dog') {
+        UploadTask uploadTask =
+            storageRef.child("Dog/pets_$petId$randomNumber.jpg").putFile(file);
+        TaskSnapshot storageSnap = await uploadTask;
+        downloadUrl = await storageSnap.ref.getDownloadURL();
+        cntr++;
+        print('Upload $cntr successful');
+        downloadUrlsList.add(downloadUrl);
+      } else if (selectedPetType == 'Cat') {
+        UploadTask uploadTask =
+            storageRef.child("Cat/pets_$petId$randomNumber.jpg").putFile(file);
+        TaskSnapshot storageSnap = await uploadTask;
+        downloadUrl = await storageSnap.ref.getDownloadURL();
+        cntr++;
+        print('Upload $cntr successful');
+        downloadUrlsList.add(downloadUrl);
+      }
     }
 
     return downloadUrlsList;
@@ -597,41 +635,58 @@ class _AddMyPetsState extends State<AddMyPets> {
         .doc(user?.uid)
         .collection("userPets")
         .doc(petId)
-        .set(petModel.toMap(petId, user?.uid));
+        .set(petModel.toMap(petId, user?.uid))
+        .then((value) =>
+            //When Successful navigate to animated check
+            Navigator.of(context)
+                .pushReplacement(MaterialPageRoute(
+                    builder: ((context) => const AnimatedCheck())))
+                .then((value) => Fluttertoast.showToast(
+                    msg: "Pet added Successfully",
+                    backgroundColor: colors.scallopSeashell)));
   }
 
   handleSubmit() async {
-    //set uploading to true
-    setState(() {
-      isUploading = true;
-    });
+    if (_formKey.currentState!.validate()) {
+      //set uploading to true
+      setState(() {
+        isUploading = true;
+      });
+      try {
+        //Await compressed images
+        await compressImages(imageList);
 
-    //Await compressed images
-    await compressImages(imageList);
+        //Receive the media Urls
+        List mediaUrls = await uploadImageFiles(selectedPetType, imageList);
 
-    //Receive the media Urls
-    List mediaUrls = await uploadImageFiles(imageList);
+        //Create Pet entry in Firestore
 
-    //Create Pet entry in Firestore
-    createPetInFireStore(mediaUrls);
+        await createPetInFireStore(mediaUrls);
 
-    await createPetInFireStore(mediaUrls);
+        //clear fields
+        petNameEditingController.clear();
+        dateEditingController.clear();
+        descEditingController.clear();
+        addressEditingController.clear();
+        setState(() {
+          selectedPetType = null;
+          selectedPetBreed = null;
+          selectedPetGender = null;
+          imageList.clear();
+          isUploading = false;
+        });
+      } on FirebaseAuthException catch (error) {
+        //loading
+        setState(() {
+          isUploading = false;
+        });
 
-    //When Successful
-    Fluttertoast.showToast(
-        msg: "Pet added Successfully", backgroundColor: colors.scallopSeashell);
+        errorMessage = 'Something went wrong';
 
-    //clear fields
-    petNameEditingController.clear();
-    dateEditingController.clear();
-    descEditingController.clear();
-    addressEditingController.clear();
-    setState(() {
-      selectedPetType = null;
-      selectedPetBreed = null;
-      selectedPetGender = null;
-      imageList.clear();
-      isUploading = false;
-    });
+        Fluttertoast.showToast(
+            msg: errorMessage, backgroundColor: colors.scallopSeashell);
+        debugPrint(error.code);
+      }
+    }
   }
 }

@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "animated_check",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/animated_check-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "animated_splash_screen",
       "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/animated_splash_screen-1.2.0",
       "packageUri": "lib/",
@@ -476,7 +482,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-06-08T13:04:06.425223Z",
+  "generated": "2022-06-17T10:24:21.056294Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

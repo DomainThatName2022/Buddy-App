@@ -6,9 +6,10 @@ class CustomDropDownMenu extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
   final _selectedOption;
   final ValueChanged _onChange;
+  final FormFieldValidator? _validator;
 
-  const CustomDropDownMenu(
-      this._list, this._title, this._selectedOption, this._onChange,
+  const CustomDropDownMenu(this._list, this._title, this._selectedOption,
+      this._onChange, this._validator,
       {Key? key})
       : super(key: key);
 
@@ -17,7 +18,8 @@ class CustomDropDownMenu extends StatelessWidget {
     return DropdownButtonHideUnderline(
         child: Padding(
       padding: const EdgeInsets.all(5.0),
-      child: DropdownButton<String>(
+      child: DropdownButtonFormField<String>(
+        decoration: const InputDecoration.collapsed(hintText: ''),
         hint: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
@@ -46,6 +48,7 @@ class CustomDropDownMenu extends StatelessWidget {
         }).toList(),
         onChanged: _onChange,
         value: _selectedOption,
+        validator: _validator,
       ),
     ));
   }

@@ -10,19 +10,38 @@ class Loading extends StatelessWidget {
     //Color Palette
     const colors = ColorPalette();
 
-    return Container(
-      color: colors.ivory,
-      child: Center(
-        child: Container(
-          height: 200,
-          width: 200,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: colors.scallopSeashell),
-          child: const Center(
-            child: SpinKitFadingCircle(
-              color: Colors.white,
-              size: 80,
+    return Material(
+      child: Container(
+        color: colors.ivory,
+        child: Center(
+          child: Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: colors.scallopSeashell),
+            child: Center(
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 25),
+                    child: SpinKitFadingCircle(
+                      color: Colors.white,
+                      size: 80,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20, bottom: 5),
+                    child: Text(
+                      'Loading...',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: colors.gray),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),

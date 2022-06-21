@@ -1,5 +1,8 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 class PetModel {
   String? name;
   String? petType;
@@ -9,6 +12,11 @@ class PetModel {
   String? address;
   String? description;
   List mediaUrlList;
+
+  final CollectionReference petRef =
+      FirebaseFirestore.instance.collection('userPets');
+
+  User? user = FirebaseAuth.instance.currentUser;
 
   PetModel(
       {this.name,
@@ -20,16 +28,31 @@ class PetModel {
       this.description,
       required this.mediaUrlList});
 
-  // receiving data from server
-  // factory Dog.fromMap(map) {
-  //   return Dog(
-  //     uid: map['uid'],
-  //     email: map['email'],
-  //     firstName: map['firstName'],
-  //     secondName: map['secondName'],
-  //     phoneNumber: map['phoneNumber'],
+  // factory PetModel.fromMap(map) {
+  //   return PetModel(
+  //     name: map['petname'],
+  //     petType: map['pet-type'],
+  //     petBreed: map['pet-breed'],
+  //     petGender: map['pet-gender'],
+  //     yearOfBirth: map['year-of-birth'],
+  //     address: map['address'],
+  //     description: map['description'],
+  //     mediaUrlList: map['pet-images'],
   //   );
   // }
+
+  factory PetModel.fromSnaphot(snapshot) {
+    return PetModel(
+      name: snapshot.data()['petname'],
+      petType: snapshot.data()['pet-type'],
+      petBreed: snapshot.data()['pet-breed'],
+      petGender: snapshot.data()['pet-gender'],
+      yearOfBirth: snapshot.data()['year-of-birth'],
+      address: snapshot.data()['address'],
+      description: snapshot.data()['description'],
+      mediaUrlList: snapshot.data()['pet-images'],
+    );
+  }
 
   // sending data to our server
   Map<String, dynamic> toMap(String petId, String? uid) {

@@ -130,222 +130,225 @@ class _LoginState extends State<Login> {
 
     return loading
         ? const Loading()
-        : Scaffold(
-            backgroundColor: Colors.white,
-            body: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 70),
-                    child: Center(
-                      child: CustomImage(
-                          'assets/images/good_dog.png', 200.0, 250.0),
+        : Material(
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              body: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 70),
+                      child: Center(
+                        child: CustomImage(
+                            'assets/images/good_dog.png', 200.0, 250.0),
+                      ),
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20),
-                    child: Center(
-                      child: Text(
-                        'Please log in',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                    const Padding(
+                      padding: EdgeInsets.only(top: 20),
+                      child: Center(
+                        child: Text(
+                          'Please log in',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
-                      child:
-                          // CustomTextField('abc@gmail.com', 'Email'),
-                          Form(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            emailField,
-                            const SizedBox(
-                              height: 50,
-                            ),
-                            passwordField,
-                            const SizedBox(
-                              height: 40,
-                            ),
-                            loginButton
-                          ],
-                        ),
-                      )),
-
-                  //Remember me Checkbox
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 5),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+                        child:
+                            // CustomTextField('abc@gmail.com', 'Email'),
+                            Form(
+                          key: _formKey,
                           child: Column(
-                            children: [
-                              // Icon(Icons.check_box_outline_blank)
-                              InkWell(
-                                onTap: _toggleRememberMe,
-                                child: Icon(
-                                  _isChecked
-                                      ? Icons.check_box_outline_blank
-                                      : Icons.check_box_outlined,
-                                  color: colors.gray,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: const [
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 16),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-
-                  //Divider (Horizontal line)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-                    child: Row(children: <Widget>[
-                      Expanded(
-                          child: Divider(
-                        thickness: 1,
-                        color: colors.gray,
-                        height: 50,
-                      )),
-                      const Text(
-                        "Or Sign in with",
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                      Expanded(
-                          child: Divider(
-                        thickness: 1,
-                        color: colors.gray,
-                        height: 50,
-                      )),
-                    ]),
-                  ),
-
-                  //Optional login
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
-                    child: Row(children: <Widget>[
-                      Expanded(
-                          child: OutlinedButton(
-                              onPressed: () => {debugPrint('Button Clicked')},
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                child: Row(
-                                  children: <Widget>[
-                                    Image.asset('assets/images/google.png'),
-                                    const Text('Google'),
-                                  ],
-                                ),
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                  side: BorderSide(
-                                      width: 2.0, color: colors.gray),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(10))))),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                          child: OutlinedButton(
-                        onPressed: () => {debugPrint('Button Clicked')},
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          child: Row(
                             children: <Widget>[
-                              Image.asset('assets/images/facebook.png'),
-                              const Text('Facebook'),
+                              emailField,
+                              const SizedBox(
+                                height: 50,
+                              ),
+                              passwordField,
+                              const SizedBox(
+                                height: 40,
+                              ),
+                              loginButton
                             ],
                           ),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                            side: BorderSide(width: 2.0, color: colors.gray),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                      )),
-                    ]),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
-                    child: Divider(
-                      thickness: 1,
-                      color: colors.gray,
-                    ),
-                  ),
+                        )),
 
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(50, 10, 40, 0),
-                    child: Center(
-                      child: Expanded(
-                          child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const Text("Don't have an account yet?"),
-                          GestureDetector(
-                              onTap: () => {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => const Register()))
-                                  },
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Text(
-                                  'Sign up',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: colors.scallopSeashell,
-                                    decoration: TextDecoration.underline,
+                    //Remember me Checkbox
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 5),
+                            child: Column(
+                              children: [
+                                // Icon(Icons.check_box_outline_blank)
+                                InkWell(
+                                  onTap: _toggleRememberMe,
+                                  child: Icon(
+                                    _isChecked
+                                        ? Icons.check_box_outline_blank
+                                        : Icons.check_box_outlined,
+                                    color: colors.gray,
                                   ),
                                 ),
-                              ))
+                              ],
+                            ),
+                          ),
+                          Column(
+                            children: const [
+                              Text(
+                                'Remember me',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 16),
+                              )
+                            ],
+                          )
                         ],
-                      )),
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const ForgotPassword()));
-                        },
-                        child: const Text(
-                          'Forgot Password',
+                    //Divider (Horizontal line)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                      child: Row(children: <Widget>[
+                        Expanded(
+                            child: Divider(
+                          thickness: 1,
+                          color: colors.gray,
+                          height: 50,
+                        )),
+                        const Text(
+                          "Or Sign in with",
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                            child: Divider(
+                          thickness: 1,
+                          color: colors.gray,
+                          height: 50,
+                        )),
+                      ]),
+                    ),
+
+                    //Optional login
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                      child: Row(children: <Widget>[
+                        Expanded(
+                            child: OutlinedButton(
+                                onPressed: () => {debugPrint('Button Clicked')},
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Image.asset('assets/images/google.png'),
+                                      const Text('Google'),
+                                    ],
+                                  ),
+                                ),
+                                style: OutlinedButton.styleFrom(
+                                    side: BorderSide(
+                                        width: 2.0, color: colors.gray),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10))))),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                            child: OutlinedButton(
+                          onPressed: () => {debugPrint('Button Clicked')},
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            child: Row(
+                              children: <Widget>[
+                                Image.asset('assets/images/facebook.png'),
+                                const Text('Facebook'),
+                              ],
+                            ),
+                          ),
+                          style: OutlinedButton.styleFrom(
+                              side: BorderSide(width: 2.0, color: colors.gray),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                        )),
+                      ]),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+                      child: Divider(
+                        thickness: 1,
+                        color: colors.gray,
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(50, 10, 40, 0),
+                      child: Center(
+                        child: Expanded(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            const Text("Don't have an account yet?"),
+                            GestureDetector(
+                                onTap: () => {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => const Register()))
+                                    },
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: Text(
+                                    'Sign up',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: colors.scallopSeashell,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ))
+                          ],
+                        )),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 20),
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPassword()));
+                          },
+                          child: const Text(
+                            'Forgot Password',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
