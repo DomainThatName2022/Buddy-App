@@ -292,41 +292,39 @@ class _LoginState extends State<Login> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(50, 10, 40, 0),
                       child: Center(
-                        child: Expanded(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            const Text("Don't have an account yet?"),
-                            GestureDetector(
-                                onTap: () => {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => const Register()))
-                                    },
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                  child: Text(
-                                    'Sign up',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: colors.scallopSeashell,
-                                      decoration: TextDecoration.underline,
-                                    ),
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text("Don't have an account yet?"),
+                          GestureDetector(
+                              onTap: () => {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => const Register()))
+                                  },
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Text(
+                                  'Sign up',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: colors.scallopSeashell,
+                                    decoration: TextDecoration.underline,
                                   ),
-                                ))
-                          ],
-                        )),
-                      ),
+                                ),
+                              ))
+                        ],
+                      )),
                     ),
+
                     const SizedBox(
                       height: 20,
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.only(bottom: 40),
                       child: Align(
                         alignment: Alignment.bottomCenter,
                         child: GestureDetector(
@@ -410,7 +408,7 @@ class _LoginState extends State<Login> {
             errorMessage = "Signing in with Email and Password is not enabled.";
             break;
           default:
-            errorMessage = "An undefined Error happened.";
+            errorMessage = "Please check your network connection.";
         }
         Fluttertoast.showToast(
             msg: errorMessage!, backgroundColor: colors.scallopSeashell);

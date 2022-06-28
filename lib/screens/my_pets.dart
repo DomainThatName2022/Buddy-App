@@ -4,6 +4,7 @@ import 'package:buddy_app/model/pet.dart';
 // import 'package:buddy_app/components/no_pets.dart';
 import 'package:buddy_app/screens/add_my_pets.dart';
 import 'package:buddy_app/screens/home.dart';
+import 'package:buddy_app/screens/pet.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,7 +23,9 @@ class MyPets extends StatefulWidget {
 class _MyPetsState extends State<MyPets> {
   //color Palette
   final colors = const ColorPalette();
-  bool petScreenLoaded = false;
+
+  //if there are pets to display
+  bool petScreenLoaded = true;
 
   User? user = FirebaseAuth.instance.currentUser;
 
@@ -36,14 +39,14 @@ class _MyPetsState extends State<MyPets> {
         .collection('userPets')
         .get();
 
-    if (data.docs.isNotEmpty) {
-      setState(() {
-        _petList = List.from(data.docs.map((doc) => PetModel.fromSnaphot(doc)));
-        petScreenLoaded = true;
-      });
-    } else if (data.docs.isEmpty) {
+    if (data.docs.isEmpty) {
       setState(() {
         petScreenLoaded = false;
+      });
+      return;
+    } else {
+      setState(() {
+        _petList = List.from(data.docs.map((doc) => PetModel.fromSnaphot(doc)));
       });
     }
   }
@@ -86,10 +89,18 @@ class _MyPetsState extends State<MyPets> {
                   padding: const EdgeInsets.only(top: 20),
                   child: ListView.builder(
                     itemCount: _petList.length,
-                    itemBuilder: (contet, index) {
+                    itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: MyPetCard(() => {}, _petList[index]),
+                        child: MyPetCard(
+                            () => {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Pet(_petList[index])))
+                                },
+                            _petList[index]),
                       );
                     },
                   ),

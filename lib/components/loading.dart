@@ -24,7 +24,7 @@ class Loading extends StatelessWidget {
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(top: 25),
+                    padding: EdgeInsets.only(top: 30),
                     child: SpinKitFadingCircle(
                       color: Colors.white,
                       size: 80,

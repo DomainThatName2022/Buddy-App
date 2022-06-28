@@ -67,16 +67,19 @@ class _AddMyPetsState extends State<AddMyPets> {
 
   // static Data for testing
   final List<String> _petType = <String>["Dog", "Cat"];
-  final List<String> _petBreed = <String>[
+  final List<String> _dogBreed = <String>[
     'Poodle',
     'Golden Retriever',
     'Bulldog',
     'Labrador'
   ];
+  final List<String> _catBreed = <String>[
+    'American Bobtail',
+    'Abyssinian',
+    'British Shorthair',
+    'Calico'
+  ];
   final List<String> _petGender = <String>['Male', 'Female'];
-
-  double val = 0;
-  late CollectionReference imgRef;
 
   //Storage reference
   final Reference storageRef = FirebaseStorage.instance.ref();
@@ -150,7 +153,7 @@ class _AddMyPetsState extends State<AddMyPets> {
 
     //pet breed field
     final petBreedField = CustomDropDownMenu(
-        _petBreed,
+        selectedPetType == "Cat" ? _catBreed : _dogBreed,
         'Select Pet Breed',
         selectedPetBreed,
         ((value) => {
@@ -377,26 +380,24 @@ class _AddMyPetsState extends State<AddMyPets> {
                                                             _imageList[
                                                                 index - 1]),
                                                         fit: BoxFit.cover)),
-                                                child: const Padding(
-                                                  padding: EdgeInsets.all(12.0),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      12.0),
                                                   child: Align(
                                                     alignment:
                                                         Alignment.bottomRight,
                                                     child: SizedBox(
                                                       height: 20,
                                                       width: 20,
-                                                      // child: IconButton(
-                                                      //     icon: const Icon(
-                                                      //       Icons.delete,
-                                                      //       color: Colors.red,
-                                                      //     ),
-                                                      //     onPressed: () => {
-                                                      //           setState(
-                                                      //               () => {
-                                                      //                     _imageList
-                                                      //                         .remove(index)
-                                                      //                   }),
-                                                      //         }),
+                                                      child: IconButton(
+                                                          icon: const Icon(
+                                                            Icons.delete,
+                                                            color: Colors.red,
+                                                          ),
+                                                          onPressed: () => {
+                                                                removeImage(
+                                                                    index)
+                                                              }),
                                                     ),
                                                   ),
                                                 ),
@@ -532,6 +533,14 @@ class _AddMyPetsState extends State<AddMyPets> {
     }
   }
 
+  removeImage(index) async {
+    setState(() {
+      _imageList.removeAt(index - 1);
+      --counter;
+      limitReached = false;
+    });
+  }
+
   //Choose image from gallery and save to a list
   chooseImage() async {
     final XFile? pickedFile =
@@ -540,9 +549,10 @@ class _AddMyPetsState extends State<AddMyPets> {
     setState(() {
       if (pickedFile != null) {
         PetModel(mediaUrlList: _imageList).addImages(pickedFile);
-        counter++;
+
         setState(() {
           imageList = _imageList;
+          counter++;
         });
       }
     });
@@ -664,17 +674,17 @@ class _AddMyPetsState extends State<AddMyPets> {
         await createPetInFireStore(mediaUrls);
 
         //clear fields
-        petNameEditingController.clear();
-        dateEditingController.clear();
-        descEditingController.clear();
-        addressEditingController.clear();
-        setState(() {
-          selectedPetType = null;
-          selectedPetBreed = null;
-          selectedPetGender = null;
-          imageList.clear();
-          isUploading = false;
-        });
+        // petNameEditingController.clear();
+        // dateEditingController.clear();
+        // descEditingController.clear();
+        // addressEditingController.clear();
+        // setState(() {
+        //   selectedPetType = null;
+        //   selectedPetBreed = null;
+        //   selectedPetGender = null;
+        //   imageList.clear();
+        //   isUploading = false;
+        // });
       } on FirebaseAuthException catch (error) {
         //loading
         setState(() {

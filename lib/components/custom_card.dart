@@ -13,73 +13,75 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: Card(
-        elevation: 8,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        child: ClipPath(
-          child: Container(
-            height: 100,
-            decoration: BoxDecoration(
-                border: Border(left: BorderSide(color: _color, width: 12))),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Material(
-                        child: Iconify(
-                          _icon,
-                          size: 70,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Column(
+    return GestureDetector(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Card(
+          elevation: 8,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          child: ClipPath(
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                  border: Border(left: BorderSide(color: _color, width: 12))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 40, right: 10),
-                        child: Text(
-                          _title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
+                        padding: const EdgeInsets.all(10.0),
+                        child: Material(
+                          child: Iconify(
+                            _icon,
+                            size: 70,
                           ),
                         ),
                       )
                     ],
                   ),
-                ),
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40, right: 25),
-                      child: Material(
-                        child: InkWell(
-                          child: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 25,
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 40, right: 10),
+                          child: Text(
+                            _title,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                            ),
                           ),
-                          onTap: _onTap,
+                        )
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40, right: 25),
+                        child: Material(
+                          child: InkWell(
+                            child: const Icon(
+                              Icons.arrow_forward_ios,
+                              size: 25,
+                            ),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )
-              ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
+            clipper: ShapeBorderClipper(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15))),
           ),
-          clipper: ShapeBorderClipper(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15))),
         ),
       ),
+      onTap: _onTap,
     );
   }
 }

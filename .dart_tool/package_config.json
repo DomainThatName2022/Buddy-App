@@ -20,6 +20,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "args",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/args-2.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.2",
       "packageUri": "lib/",
@@ -176,8 +182,8 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "name": "flutter_launcher_icons",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.9.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -280,12 +286,6 @@
     {
       "name": "js",
       "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "lints",
-      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -476,13 +476,19 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "yaml",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "buddy_app",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-06-17T10:24:21.056294Z",
+  "generated": "2022-06-27T11:03:14.972244Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
