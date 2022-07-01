@@ -46,7 +46,7 @@ class RegistrationSuccessful extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 25,
-                    color: colors.scallopSeashell,
+                    color: colors.dominant,
                     fontWeight: FontWeight.w500),
               ),
             ),

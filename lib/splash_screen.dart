@@ -20,7 +20,7 @@ class Splash extends StatelessWidget {
             child: Image.asset('assets/images/splash.png'),
           ),
         ),
-        splashIconSize: 120,
+        splashIconSize: 300,
         nextScreen: const Login(),
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,

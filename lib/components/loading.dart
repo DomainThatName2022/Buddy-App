@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
+  // const Loading({Key? key}) : super(key: key);
+  final String _status;
+
+  Loading(this._status);
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +15,14 @@ class Loading extends StatelessWidget {
 
     return Material(
       child: Container(
-        color: colors.ivory,
+        color: colors.accentTweaked,
         child: Center(
           child: Container(
             height: 200,
             width: 200,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: colors.scallopSeashell),
+                color: colors.dominant),
             child: Center(
               child: Column(
                 children: [
@@ -33,11 +36,11 @@ class Loading extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 5),
                     child: Text(
-                      'Loading...',
+                      _status,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
-                          color: colors.gray),
+                          color: Colors.white),
                     ),
                   )
                 ],

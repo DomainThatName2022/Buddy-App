@@ -41,7 +41,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             ),
             activeIcon: Iconify(
               homeIcon,
-              color: colors.scallopSeashell,
+              color: colors.accent,
             ),
             label: 'Home',
           ),
@@ -49,7 +49,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             icon: const Iconify(pawIcon, size: 20),
             activeIcon: Iconify(
               pawIcon,
-              color: colors.scallopSeashell,
+              color: colors.accent,
             ),
             label: 'Manage Pets',
           ),
@@ -57,7 +57,7 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             icon: const Iconify(chatIcon, size: 20),
             activeIcon: Iconify(
               chatIcon,
-              color: colors.scallopSeashell,
+              color: colors.accent,
             ),
             label: 'Chat',
           ),
@@ -69,13 +69,13 @@ class _CustomBottomNavigationState extends State<CustomBottomNavigation> {
             ),
             activeIcon: Icon(
               Icons.settings,
-              color: colors.scallopSeashell,
+              color: colors.accent,
             ),
             label: 'Settings',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: colors.scallopSeashell,
+        selectedItemColor: colors.dominant,
         onTap: _onItemTapped,
       ),
     );

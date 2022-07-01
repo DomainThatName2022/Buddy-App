@@ -26,7 +26,7 @@ class NoPets extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: colors.scallopSeashell),
+                        color: colors.dominant),
                   ),
                 ),
                 SizedBox(

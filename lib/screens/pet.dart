@@ -2,6 +2,7 @@
 
 import 'package:buddy_app/model/pet.dart';
 import 'package:buddy_app/theme/color_palette.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../components/custom_bottom_navigation.dart';
@@ -60,14 +61,14 @@ class _PetState extends State<Pet> {
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: Colors.white, width: 3.0),
           )),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //Submit Button
     final submitButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(5),
-      color: colors.scallopSeashell,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {},
         minWidth: MediaQuery.of(context).size.width,
@@ -76,7 +77,7 @@ class _PetState extends State<Pet> {
           'Send Invite',
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -85,7 +86,7 @@ class _PetState extends State<Pet> {
     final reportButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.scallopSeashell,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {},
         minWidth: MediaQuery.of(context).size.width,
@@ -94,7 +95,7 @@ class _PetState extends State<Pet> {
           'Report missing pet',
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -103,7 +104,7 @@ class _PetState extends State<Pet> {
     final deleteButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: Colors.red,
+      color: Colors.red[400],
       child: MaterialButton(
         onPressed: () {},
         minWidth: MediaQuery.of(context).size.width,
@@ -155,10 +156,10 @@ class _PetState extends State<Pet> {
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+          borderSide: BorderSide(color: colors.dominant, width: 2),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //date pet was last seen
@@ -201,10 +202,10 @@ class _PetState extends State<Pet> {
             focusedBorder: OutlineInputBorder(
               gapPadding: 0.0,
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+              borderSide: BorderSide(color: colors.dominant, width: 2),
             ),
           ),
-          cursorColor: colors.scallopSeashell,
+          cursorColor: colors.dominant,
         ),
       ),
     );
@@ -213,10 +214,10 @@ class _PetState extends State<Pet> {
       appBar: AppBar(
           title: Text(
             "${widget._pet.name}",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: colors.scallopSeashell,
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: colors.dominant,
           centerTitle: true,
           actions: const [
             Padding(
@@ -225,7 +226,7 @@ class _PetState extends State<Pet> {
             ),
           ]),
       body: Container(
-        color: colors.pewter,
+        color: colors.accentTweaked,
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -255,7 +256,7 @@ class _PetState extends State<Pet> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.red),
+                            color: Colors.red[400]),
                       ),
                     ),
                   ),
@@ -265,7 +266,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.ivory),
+                          color: colors.accentTweaked),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
@@ -291,7 +292,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.ivory),
+                          color: colors.accentTweaked),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
@@ -317,7 +318,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.ivory),
+                          color: colors.accentTweaked),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
@@ -343,7 +344,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.ivory),
+                          color: colors.accentTweaked),
                       child: Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Row(
@@ -372,7 +373,7 @@ class _PetState extends State<Pet> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.red),
+                            color: Colors.red[400]),
                       ),
                     ),
                   ),
@@ -384,7 +385,7 @@ class _PetState extends State<Pet> {
                       child: Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: colors.ivory),
+                            color: colors.accentTweaked),
                         height: 80,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -416,7 +417,7 @@ class _PetState extends State<Pet> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            color: Colors.red),
+                            color: Colors.red[400]),
                       ),
                     ),
                   ),
@@ -426,7 +427,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.ivory),
+                          color: colors.accentTweaked),
                       height: 80,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -445,7 +446,7 @@ class _PetState extends State<Pet> {
                                     _flag = value;
                                   });
                                 },
-                                activeColor: colors.scallopSeashell,
+                                activeColor: colors.dominant,
                               ),
                             ),
                           )),
@@ -462,7 +463,7 @@ class _PetState extends State<Pet> {
                                       _flag = value;
                                     });
                                   },
-                                  activeColor: colors.scallopSeashell,
+                                  activeColor: colors.dominant,
                                 ),
                               ),
                             ),
@@ -485,7 +486,7 @@ class _PetState extends State<Pet> {
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
-                                        color: Colors.red),
+                                        color: Colors.red[400]),
                                   ),
                                 ),
                               ),
@@ -505,7 +506,7 @@ class _PetState extends State<Pet> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 30,
+                                          top: 40,
                                           right: 40,
                                           left: 40,
                                           bottom: 50),
@@ -520,7 +521,7 @@ class _PetState extends State<Pet> {
                       : Container(
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                top: 30, left: 40, right: 40, bottom: 50),
+                                top: 40, left: 40, right: 40, bottom: 50),
                             child: deleteButton,
                           ),
                         )
@@ -544,7 +545,7 @@ class _PetState extends State<Pet> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
-                primary: colors.scallopSeashell,
+                primary: colors.dominant,
                 onPrimary: Colors.black,
                 onSurface: Colors.black,
               ),
@@ -566,5 +567,12 @@ class _PetState extends State<Pet> {
         dateController.text = date;
       });
     }
+
+    // _deletePet(index) async {
+    //   await FirebaseFirestore.instance
+    //       .runTransaction((Transaction myTransaction) async {
+    //     await myTransaction.delete(snapshot.data.documents[index].reference);
+    //   });
+    // }
   }
 }

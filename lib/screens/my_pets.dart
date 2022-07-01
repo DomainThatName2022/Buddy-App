@@ -63,10 +63,10 @@ class _MyPetsState extends State<MyPets> {
       appBar: AppBar(
           title: const Text(
             'My Pets',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: colors.scallopSeashell,
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: colors.dominant,
           centerTitle: true,
           actions: const [
             Padding(
@@ -84,7 +84,7 @@ class _MyPetsState extends State<MyPets> {
                 return Future.value(false);
               },
               child: Container(
-                color: colors.pewter,
+                color: colors.accentTweaked,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: ListView.builder(
@@ -117,7 +117,7 @@ class _MyPetsState extends State<MyPets> {
               Icons.add,
               color: Colors.black,
             ),
-            backgroundColor: colors.scallopSeashell,
+            backgroundColor: colors.accent,
             onPressed: () {
               //Navigate to AddPets screen
               Navigator.push(context,

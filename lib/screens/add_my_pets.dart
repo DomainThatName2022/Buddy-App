@@ -126,10 +126,10 @@ class _AddMyPetsState extends State<AddMyPets> {
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+          borderSide: BorderSide(color: colors.dominant, width: 2),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //pet type field
@@ -201,10 +201,10 @@ class _AddMyPetsState extends State<AddMyPets> {
             focusedBorder: OutlineInputBorder(
               gapPadding: 0.0,
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+              borderSide: BorderSide(color: colors.dominant, width: 2),
             ),
           ),
-          cursorColor: colors.scallopSeashell,
+          cursorColor: colors.dominant,
         )));
 
     //Address
@@ -245,10 +245,10 @@ class _AddMyPetsState extends State<AddMyPets> {
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+          borderSide: BorderSide(color: colors.dominant, width: 2),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //pet description field
@@ -280,17 +280,17 @@ class _AddMyPetsState extends State<AddMyPets> {
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.scallopSeashell, width: 2),
+          borderSide: BorderSide(color: colors.dominant, width: 2),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //Submit Button
     final saveButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.scallopSeashell,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: isUploading
             ? null
@@ -312,10 +312,10 @@ class _AddMyPetsState extends State<AddMyPets> {
       appBar: AppBar(
           title: const Text(
             'Add Pets',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: colors.scallopSeashell,
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: colors.dominant,
           centerTitle: true,
           actions: const [
             Padding(
@@ -324,172 +324,179 @@ class _AddMyPetsState extends State<AddMyPets> {
             ),
           ]),
       body: isUploading
-          ? const Loading()
-          : SingleChildScrollView(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 30),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 210,
-                          width: 315,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Center(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: colors.scallopSeashell,
-                              ),
-                              child: Stack(children: [
-                                Container(
-                                  padding: const EdgeInsets.all(4),
-                                  child: GridView.builder(
-                                      itemCount: _imageList.length + 1,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount: 3),
-                                      itemBuilder: (context, index) {
-                                        return index == 0
-                                            ? Center(
-                                                child: Container(
+          ? Loading('Adding Pet Entry...')
+          : Container(
+              color: colors.accentTweaked,
+              child: SingleChildScrollView(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 210,
+                            width: 315,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: colors.accent,
+                                ),
+                                child: Stack(children: [
+                                  Container(
+                                    padding: const EdgeInsets.all(4),
+                                    child: GridView.builder(
+                                        itemCount: _imageList.length + 1,
+                                        gridDelegate:
+                                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3),
+                                        itemBuilder: (context, index) {
+                                          return index == 0
+                                              ? Center(
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        color: Colors.white),
+                                                    child: IconButton(
+                                                        icon: const Icon(
+                                                            Icons.add),
+                                                        onPressed: limitReached
+                                                            ? null
+                                                            : () =>
+                                                                chooseImage()),
+                                                  ),
+                                                )
+                                              : Container(
+                                                  margin:
+                                                      const EdgeInsets.all(5),
                                                   decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      color: Colors.white),
-                                                  child: IconButton(
-                                                      icon:
-                                                          const Icon(Icons.add),
-                                                      onPressed: limitReached
-                                                          ? null
-                                                          : () =>
-                                                              chooseImage()),
-                                                ),
-                                              )
-                                            : Container(
-                                                margin: const EdgeInsets.all(5),
-                                                decoration: BoxDecoration(
-                                                    image: DecorationImage(
-                                                        image: FileImage(
-                                                            _imageList[
-                                                                index - 1]),
-                                                        fit: BoxFit.cover)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      12.0),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.bottomRight,
-                                                    child: SizedBox(
-                                                      height: 20,
-                                                      width: 20,
-                                                      child: IconButton(
-                                                          icon: const Icon(
-                                                            Icons.delete,
-                                                            color: Colors.red,
-                                                          ),
-                                                          onPressed: () => {
-                                                                removeImage(
-                                                                    index)
-                                                              }),
+                                                      image: DecorationImage(
+                                                          image: FileImage(
+                                                              _imageList[
+                                                                  index - 1]),
+                                                          fit: BoxFit.cover)),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            12.0),
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.bottomRight,
+                                                      child: SizedBox(
+                                                        height: 20,
+                                                        width: 20,
+                                                        child: IconButton(
+                                                            icon: Icon(
+                                                              Icons.delete,
+                                                              color: Colors
+                                                                  .red[400],
+                                                            ),
+                                                            onPressed: () => {
+                                                                  removeImage(
+                                                                      index)
+                                                                }),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              );
-                                      }),
-                                )
-                              ]),
-                            ),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 30, left: 30, top: 5),
-                          child: Divider(
-                            color: Colors.grey,
-                            thickness: 1,
-                            height: 40,
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 40, top: 5),
-                          child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Pet Information',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w800,
+                                                );
+                                        }),
+                                  )
+                                ]),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: petNameField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 10),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.fromBorderSide(BorderSide(
-                                    color: colors.gray,
-                                    width: 1,
-                                  )),
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: petTypeField),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.fromBorderSide(BorderSide(
-                                    color: colors.gray,
-                                    width: 1,
-                                  )),
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: petGenderField),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.fromBorderSide(BorderSide(
-                                    color: colors.gray,
-                                    width: 1,
-                                  )),
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: petBreedField),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40),
-                          child: yearOfBirthField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40),
-                          child: addressField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40),
-                          child: descField,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30, right: 30, top: 40, bottom: 50),
-                          child: saveButton,
-                        )
-                      ],
+                          const Padding(
+                            padding:
+                                EdgeInsets.only(right: 30, left: 30, top: 5),
+                            child: Divider(
+                              color: Colors.grey,
+                              thickness: 1,
+                              height: 40,
+                            ),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 40, top: 5),
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                'Pet Information',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(30.0),
+                            child: petNameField,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 10),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.fromBorderSide(BorderSide(
+                                      color: colors.gray,
+                                      width: 1,
+                                    )),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: petTypeField),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.fromBorderSide(BorderSide(
+                                      color: colors.gray,
+                                      width: 1,
+                                    )),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: petGenderField),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.fromBorderSide(BorderSide(
+                                      color: colors.gray,
+                                      width: 1,
+                                    )),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: petBreedField),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40),
+                            child: yearOfBirthField,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40),
+                            child: addressField,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40),
+                            child: descField,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 40, bottom: 50),
+                            child: saveButton,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -509,8 +516,8 @@ class _AddMyPetsState extends State<AddMyPets> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
-                primary: colors.scallopSeashell,
-                onPrimary: Colors.black,
+                primary: colors.dominant,
+                onPrimary: Colors.white,
                 onSurface: Colors.black,
               ),
               textButtonTheme: TextButtonThemeData(
@@ -653,7 +660,7 @@ class _AddMyPetsState extends State<AddMyPets> {
                     builder: ((context) => const AnimatedCheck())))
                 .then((value) => Fluttertoast.showToast(
                     msg: "Pet added Successfully",
-                    backgroundColor: colors.scallopSeashell)));
+                    backgroundColor: colors.accent)));
   }
 
   handleSubmit() async {
@@ -694,7 +701,7 @@ class _AddMyPetsState extends State<AddMyPets> {
         errorMessage = 'Something went wrong';
 
         Fluttertoast.showToast(
-            msg: errorMessage, backgroundColor: colors.scallopSeashell);
+            msg: errorMessage, backgroundColor: colors.accent);
         debugPrint(error.code);
       }
     }

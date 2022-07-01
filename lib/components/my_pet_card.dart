@@ -36,7 +36,7 @@ class MyPetCard extends StatelessWidget {
                             width: 90,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
-                              color: colors.scallopSeashell,
+                              color: colors.accentTweaked,
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15),

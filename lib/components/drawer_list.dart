@@ -80,7 +80,7 @@ class _DrawerListState extends State<DrawerList> {
                 child: Icon(
                   icon,
                   size: 25,
-                  color: colors.scallopSeashell,
+                  color: colors.dominant,
                 ),
               ),
               Expanded(

@@ -35,7 +35,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: colors.scallopSeashell,
+      color: colors.dominant,
       width: double.infinity,
       height: 150,
       padding: const EdgeInsets.only(top: 40.0),
@@ -61,7 +61,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                 Text(
                   "${loggedInUser.email}",
                   style: const TextStyle(
-                    color: Colors.black,
+                    color: Colors.white,
                     fontSize: 14,
                   ),
                   textAlign: TextAlign.left,

@@ -65,10 +65,10 @@ class _LoginState extends State<Login> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.mail,
-            color: colors.gray,
+            color: colors.accent,
           ),
           hintText: 'Email'),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     final passwordField = TextFormField(
@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.gray,
+          color: colors.accent,
         ),
         hintText: 'Password',
         // labelText: 'Password',
@@ -102,17 +102,17 @@ class _LoginState extends State<Login> {
           onTap: _togglePasswordView,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.gray,
+            color: colors.accent,
           ),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     final loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.gray,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {
           signIn(emailcontroller.text, passwordcontroller.text);
@@ -129,7 +129,7 @@ class _LoginState extends State<Login> {
     );
 
     return loading
-        ? const Loading()
+        ? Loading('Signing in...')
         : Material(
             child: Scaffold(
               backgroundColor: Colors.white,
@@ -193,7 +193,7 @@ class _LoginState extends State<Login> {
                                     _isChecked
                                         ? Icons.check_box_outline_blank
                                         : Icons.check_box_outlined,
-                                    color: colors.gray,
+                                    color: colors.dominant,
                                   ),
                                 ),
                               ],
@@ -310,7 +310,7 @@ class _LoginState extends State<Login> {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    color: colors.scallopSeashell,
+                                    color: colors.dominant,
                                     decoration: TextDecoration.underline,
                                   ),
                                 ),
@@ -377,8 +377,7 @@ class _LoginState extends State<Login> {
             .signInWithEmailAndPassword(email: email, password: password)
             .then((uid) => {
                   Fluttertoast.showToast(
-                      msg: "Login Successful",
-                      backgroundColor: colors.scallopSeashell),
+                      msg: "Login Successful", backgroundColor: colors.accent),
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const HomePage())),
                 });
@@ -411,7 +410,7 @@ class _LoginState extends State<Login> {
             errorMessage = "Please check your network connection.";
         }
         Fluttertoast.showToast(
-            msg: errorMessage!, backgroundColor: colors.scallopSeashell);
+            msg: errorMessage!, backgroundColor: colors.accent);
         debugPrint(error.code);
       }
     }

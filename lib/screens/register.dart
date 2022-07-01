@@ -63,10 +63,10 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.account_circle,
-            color: colors.gray,
+            color: colors.accent,
           ),
           hintText: 'First Name'),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //last name field
@@ -89,10 +89,10 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.account_circle,
-            color: colors.gray,
+            color: colors.accent,
           ),
           hintText: 'Last Name'),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //email field
@@ -119,10 +119,10 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.mail,
-            color: colors.gray,
+            color: colors.accent,
           ),
           hintText: 'Email'),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //phone number
@@ -149,10 +149,10 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.phone,
-            color: colors.gray,
+            color: colors.accent,
           ),
           hintText: 'Phone Number'),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //password field
@@ -179,18 +179,18 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.gray,
+          color: colors.accent,
         ),
         hintText: 'Password',
         suffixIcon: InkWell(
           onTap: _togglePasswordVisibilty,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.gray,
+            color: colors.accent,
           ),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     //confirm password field
@@ -213,7 +213,7 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.gray,
+          color: colors.accent,
         ),
         hintText: 'Confirm Password',
         // labelText: 'Password',
@@ -221,17 +221,17 @@ class _RegisterState extends State<Register> {
           onTap: _toggleConfirmPasswordVisibilty,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.gray,
+            color: colors.accent,
           ),
         ),
       ),
-      cursorColor: colors.scallopSeashell,
+      cursorColor: colors.dominant,
     );
 
     final signUpButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.gray,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {
           signUp(emailEditingController.text, passwordEditingController.text);
@@ -248,7 +248,7 @@ class _RegisterState extends State<Register> {
     );
 
     return loading
-        ? const Loading()
+        ? Loading('Creating Profile...')
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -260,7 +260,7 @@ class _RegisterState extends State<Register> {
                   },
                   icon: Icon(
                     Icons.arrow_back,
-                    color: colors.scallopSeashell,
+                    color: colors.dominant,
                   )),
             ),
             body: SingleChildScrollView(
@@ -371,7 +371,7 @@ class _RegisterState extends State<Register> {
             .then((value) => {postDetailsToFirestore()})
             .catchError((e) {
           Fluttertoast.showToast(
-              msg: e!.message, backgroundColor: colors.scallopSeashell);
+              msg: e!.message, backgroundColor: colors.accent);
         });
       } on FirebaseAuthException catch (error) {
         setState(() {
@@ -400,7 +400,7 @@ class _RegisterState extends State<Register> {
             errorMessage = "An undefined Error happened.";
         }
         Fluttertoast.showToast(
-            msg: errorMessage, backgroundColor: colors.scallopSeashell);
+            msg: errorMessage, backgroundColor: colors.accent);
         debugPrint(error.code);
       }
     }
@@ -428,8 +428,7 @@ class _RegisterState extends State<Register> {
         .doc(user.uid)
         .set(userModel.toMap());
     Fluttertoast.showToast(
-        msg: "Account created successfully!",
-        backgroundColor: colors.scallopSeashell);
+        msg: "Account created successfully!", backgroundColor: colors.accent);
 
     Navigator.pushAndRemoveUntil(
         (context),

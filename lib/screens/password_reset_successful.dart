@@ -13,7 +13,7 @@ class PasswordResetSuccessful extends StatelessWidget {
     final proceedButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.gray,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {
           Navigator.pushReplacement(
@@ -46,7 +46,7 @@ class PasswordResetSuccessful extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 25,
-                    color: colors.scallopSeashell,
+                    color: colors.dominant,
                     fontWeight: FontWeight.w500),
               ),
             ),

@@ -18,7 +18,7 @@ class _NotificationIconState extends State<NotificationIcon> {
         children: [
           const Icon(
             Icons.notifications,
-            color: Colors.black,
+            color: Colors.white,
             size: 30,
           ),
           Container(

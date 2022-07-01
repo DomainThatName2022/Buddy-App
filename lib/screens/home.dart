@@ -31,10 +31,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
           title: const Text(
             'Home',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
-          iconTheme: const IconThemeData(color: Colors.black),
-          backgroundColor: colors.scallopSeashell,
+          iconTheme: const IconThemeData(color: Colors.white),
+          backgroundColor: colors.dominant,
           centerTitle: true,
           actions: const [
             Padding(
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         )),
       ),
       body: Container(
-        color: colors.pewter,
+        color: colors.accentTweaked,
         child: Padding(
           padding: const EdgeInsets.only(top: 20),
           child: Column(
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                 child: CustomCard(
                     petIcon,
                     'I have lost my pet',
-                    colors.scallopSeashell,
+                    colors.dominant,
                     () => {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const MyPets()))
@@ -71,12 +71,12 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 child: CustomCard(
-                    foundIcon, 'I have found a pet', colors.gray, () => {}),
+                    foundIcon, 'I have found a pet', colors.accent, () => {}),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20),
-                child:
-                    CustomCard(dogIcon, 'All matches', colors.ivory, () => {}),
+                child: CustomCard(
+                    dogIcon, 'All matches', colors.compliment, () => {}),
               ),
             ],
           ),

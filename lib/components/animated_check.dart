@@ -49,7 +49,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
     final doneButton = Material(
         elevation: 5,
         borderRadius: BorderRadius.circular(20),
-        color: colors.gray,
+        color: colors.dominant,
         child: MaterialButton(
           onPressed: () {
             //Navigate back to MyPets screen
@@ -67,7 +67,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
         ));
     return Material(
       child: Container(
-        color: colors.ivory,
+        color: colors.accent,
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Center(
@@ -79,7 +79,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
                   height: circleSize,
                   width: circleSize,
                   decoration: BoxDecoration(
-                    color: colors.scallopSeashell,
+                    color: colors.dominant,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -98,7 +98,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
                     'Pet Added Succefully',
                     style: TextStyle(
                         fontSize: 16,
-                        color: colors.gray,
+                        color: colors.dominant,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
