@@ -28,19 +28,6 @@ class PetModel {
       this.description,
       required this.mediaUrlList});
 
-  // factory PetModel.fromMap(map) {
-  //   return PetModel(
-  //     name: map['petname'],
-  //     petType: map['pet-type'],
-  //     petBreed: map['pet-breed'],
-  //     petGender: map['pet-gender'],
-  //     yearOfBirth: map['year-of-birth'],
-  //     address: map['address'],
-  //     description: map['description'],
-  //     mediaUrlList: map['pet-images'],
-  //   );
-  // }
-
   factory PetModel.fromSnaphot(snapshot) {
     return PetModel(
       name: snapshot.data()['petname'],
@@ -66,7 +53,8 @@ class PetModel {
       "year-of-birth": yearOfBirth,
       "address": address,
       "description": description,
-      "pet-images": mediaUrlList
+      "pet-images": mediaUrlList,
+      "createdOn": DateTime.now(),
     };
   }
 

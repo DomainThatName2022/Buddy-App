@@ -1,3 +1,4 @@
+import 'package:buddy_app/screens/my_profile.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,14 +59,28 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   style: const TextStyle(color: Colors.white, fontSize: 20),
                   textAlign: TextAlign.left,
                 ),
-                Text(
-                  "${loggedInUser.email}",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
+                // Text(
+                //   "${loggedInUser.email}",
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     fontSize: 14,
+                //   ),
+                //   textAlign: TextAlign.left,
+                // ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 70, top: 10),
+                  child: InkWell(
+                    child: Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500, color: Colors.white),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: ((context) => const MyProfile())));
+                    },
                   ),
-                  textAlign: TextAlign.left,
-                ),
+                )
               ],
             ),
           ),

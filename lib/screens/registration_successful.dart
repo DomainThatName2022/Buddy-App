@@ -13,7 +13,7 @@ class RegistrationSuccessful extends StatelessWidget {
     final proceedButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(20),
-      color: colors.gray,
+      color: colors.dominant,
       child: MaterialButton(
         onPressed: () {
           Navigator.pushReplacement(
@@ -62,15 +62,6 @@ class RegistrationSuccessful extends StatelessWidget {
             ),
             const SizedBox(
               height: 20,
-            ),
-            const Center(
-              child: Text(
-                'Please proceed to Login',
-                style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 16,
-                ),
-              ),
             ),
             const SizedBox(
               height: 10,

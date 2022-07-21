@@ -67,7 +67,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
         ));
     return Material(
       child: Container(
-        color: colors.accent,
+        color: colors.accentTweaked,
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Center(

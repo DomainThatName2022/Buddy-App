@@ -115,9 +115,9 @@ class _MyPetsState extends State<MyPets> {
             elevation: 5.0,
             child: const Icon(
               Icons.add,
-              color: Colors.black,
+              color: Colors.white,
             ),
-            backgroundColor: colors.accent,
+            backgroundColor: colors.dominant,
             onPressed: () {
               //Navigate to AddPets screen
               Navigator.push(context,

@@ -64,8 +64,11 @@ class _HomePageState extends State<HomePage> {
                     'I have lost my pet',
                     colors.dominant,
                     () => {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const MyPets()))
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const MyPets(),
+                            ),
+                          )
                         }),
               ),
               Padding(

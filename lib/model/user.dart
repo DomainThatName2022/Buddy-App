@@ -31,6 +31,7 @@ class UserModel {
       'firstName': firstName,
       'secondName': secondName,
       'phoneNumber': phoneNumber,
+      'createdOn': DateTime.now(),
     };
   }
 }

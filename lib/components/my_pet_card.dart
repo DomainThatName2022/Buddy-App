@@ -1,12 +1,14 @@
 import 'package:buddy_app/model/pet.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class MyPetCard extends StatelessWidget {
   final VoidCallback? _onTap;
 
   //PetModel
   final PetModel _pet;
+  // bool petImageLoading = false;
 
   MyPetCard(this._onTap, this._pet);
 
@@ -40,9 +42,13 @@ class MyPetCard extends StatelessWidget {
                             ),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(15),
-                              child: Image.network(
-                                "${_pet.mediaUrlList[0]}",
+                              child: CachedNetworkImage(
+                                imageUrl: "${_pet.mediaUrlList[0]}",
                                 fit: BoxFit.fill,
+                                placeholder: (context, url) =>
+                                    Center(child: CircularProgressIndicator()),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
                               ),
                             )),
                       )

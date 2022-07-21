@@ -4,7 +4,7 @@ import 'package:buddy_app/model/pet.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import '../components/custom_bottom_navigation.dart';
 import '../components/notification_icon.dart';
 
@@ -54,13 +54,15 @@ class _PetState extends State<Pet> {
         coParentingController.text = value!;
       },
       decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: 'Username',
-          fillColor: Colors.white,
-          filled: true,
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white, width: 3.0),
-          )),
+        border: InputBorder.none,
+        hintText: 'Username',
+        fillColor: Colors.white,
+        filled: true,
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white, width: 3.0),
+          borderRadius: BorderRadius.circular(8),
+        ),
+      ),
       cursorColor: colors.dominant,
     );
 
@@ -240,10 +242,12 @@ class _PetState extends State<Pet> {
                         BoxDecoration(borderRadius: BorderRadius.circular(15)),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(
-                        // "assets/images/dog-face.png",
-                        "${widget._pet.mediaUrlList[0]}",
+                      child: CachedNetworkImage(
+                        imageUrl: "${widget._pet.mediaUrlList[0]}",
                         fit: BoxFit.fill,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
                   ),

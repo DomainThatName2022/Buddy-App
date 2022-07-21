@@ -550,8 +550,8 @@ class _AddMyPetsState extends State<AddMyPets> {
 
   //Choose image from gallery and save to a list
   chooseImage() async {
-    final XFile? pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile = await ImagePicker()
+        .pickImage(source: ImageSource.gallery, imageQuality: 25);
 
     setState(() {
       if (pickedFile != null) {
@@ -679,19 +679,6 @@ class _AddMyPetsState extends State<AddMyPets> {
         //Create Pet entry in Firestore
 
         await createPetInFireStore(mediaUrls);
-
-        //clear fields
-        // petNameEditingController.clear();
-        // dateEditingController.clear();
-        // descEditingController.clear();
-        // addressEditingController.clear();
-        // setState(() {
-        //   selectedPetType = null;
-        //   selectedPetBreed = null;
-        //   selectedPetGender = null;
-        //   imageList.clear();
-        //   isUploading = false;
-        // });
       } on FirebaseAuthException catch (error) {
         //loading
         setState(() {
