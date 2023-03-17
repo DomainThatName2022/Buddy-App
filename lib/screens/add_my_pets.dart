@@ -346,68 +346,79 @@ class _AddMyPetsState extends State<AddMyPets> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
-                                  color: colors.accent,
+                                  // color: colors.accentTweaked,
                                 ),
                                 child: Stack(children: [
                                   Container(
                                     padding: const EdgeInsets.all(4),
-                                    child: GridView.builder(
-                                        itemCount: _imageList.length + 1,
-                                        gridDelegate:
-                                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3),
-                                        itemBuilder: (context, index) {
-                                          return index == 0
-                                              ? Center(
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(25),
-                                                        color: Colors.white),
-                                                    child: IconButton(
-                                                        icon: const Icon(
-                                                            Icons.add),
-                                                        onPressed: limitReached
-                                                            ? null
-                                                            : () =>
-                                                                chooseImage()),
-                                                  ),
-                                                )
-                                              : Container(
-                                                  margin:
-                                                      const EdgeInsets.all(5),
-                                                  decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: FileImage(
-                                                              _imageList[
-                                                                  index - 1]),
-                                                          fit: BoxFit.cover)),
-                                                  child: Padding(
+                                    child: SizedBox(
+                                      height: 200,
+                                      child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: _imageList.length + 1,
+                                          itemBuilder: (context, index) {
+                                            return index == 0
+                                                ? Padding(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            12.0),
-                                                    child: Align(
-                                                      alignment:
-                                                          Alignment.bottomRight,
-                                                      child: SizedBox(
-                                                        height: 20,
-                                                        width: 20,
-                                                        child: IconButton(
-                                                            icon: Icon(
-                                                              Icons.delete,
-                                                              color: Colors
-                                                                  .red[400],
+                                                            8.0),
+                                                    child: Container(
+                                                      width: 200,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        color: colors
+                                                            .accentTweaked,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Center(
+                                                          child: Container(
+                                                            decoration: BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            25),
+                                                                color: colors
+                                                                    .accent),
+                                                            child: IconButton(
+                                                              icon: const Icon(
+                                                                  Icons.add),
+                                                              onPressed:
+                                                                  limitReached
+                                                                      ? null
+                                                                      : () =>
+                                                                          chooseImage(),
                                                             ),
-                                                            onPressed: () => {
-                                                                  removeImage(
-                                                                      index)
-                                                                }),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                        }),
+                                                  )
+                                                : Padding(
+                                                    padding:
+                                                        EdgeInsets.all(8.0),
+                                                    child: Container(
+                                                      width: 200,
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15),
+                                                        child: Image(
+                                                          image: FileImage(
+                                                            _imageList[
+                                                                index - 1],
+                                                          ),
+                                                          fit: BoxFit.fill,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                          }),
+                                    ),
                                   )
                                 ]),
                               ),

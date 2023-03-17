@@ -8,11 +8,13 @@ Future<void> main() async {
   await Firebase.initializeApp(
     // Replace with actual values
     options: FirebaseOptions(
-      apiKey: "AIzaSyBXv15-rcVszvf7nXCqnLwzmsZBCU4dNjc",
-      appId: "1:259771989535:android:b558e94b520fddbab75f2a",
-      messagingSenderId: "259771989535",
-      projectId: "emailpasswordauth-13830",
-    ),
+        apiKey: "AIzaSyBgWL29Pk-qaobGkRO0HbaH1PQooU3yIyQ",
+        authDomain: "buddyapp-321f5.firebaseapp.com",
+        projectId: "buddyapp-321f5",
+        storageBucket: "buddyapp-321f5.appspot.com",
+        messagingSenderId: "136919883372",
+        appId: "1:136919883372:web:8b934de684755c62718249",
+        measurementId: "G-CR4H61HWFP"),
   );
 
   runApp(const Splash());

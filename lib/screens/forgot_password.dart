@@ -55,10 +55,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       },
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.mail,
-            color: colors.gray,
-          ),
+          prefixIcon: Icon(Icons.mail, color: colors.dominant),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'Email'),
       cursorColor: colors.dominant,
     );
@@ -66,8 +67,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     //Submit Button
     final passwordResetButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.accent,
       child: MaterialButton(
         onPressed: () {
           resetPassword(emailcontroller.text);
@@ -86,19 +87,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: colors.dominant,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back,
-              color: Colors.white,
+              color: colors.dominant,
             )),
-        title: const Text(
+        title: Text(
           'Forgot Password',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: colors.accent, fontWeight: FontWeight.w800),
         ),
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -106,6 +107,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: isResetted
           ? Loading('Resetting password...')
           : Material(
+              color: Colors.white,
               child: SingleChildScrollView(
                   child: Padding(
                 padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
@@ -118,13 +120,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                     CustomImage(
                         'assets/images/forgot_password.png', 250.0, 333.0),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Center(
                         child: Text(
                           'Forgot your password?',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 16,
+                            color: colors.accent,
+                            fontFamily: "Open Sans",
+                            fontSize: 25,
                             fontWeight: FontWeight.w900,
                           ),
                         ),

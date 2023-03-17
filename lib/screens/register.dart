@@ -63,8 +63,12 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.account_circle,
-            color: colors.accent,
+            color: colors.dominant,
           ),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'First Name'),
       cursorColor: colors.dominant,
     );
@@ -89,8 +93,12 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.account_circle,
-            color: colors.accent,
+            color: colors.dominant,
           ),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'Last Name'),
       cursorColor: colors.dominant,
     );
@@ -119,8 +127,12 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.mail,
-            color: colors.accent,
+            color: colors.dominant,
           ),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'Email'),
       cursorColor: colors.dominant,
     );
@@ -149,8 +161,12 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.phone,
-            color: colors.accent,
+            color: colors.dominant,
           ),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'Phone Number'),
       cursorColor: colors.dominant,
     );
@@ -179,14 +195,18 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.accent,
+          color: colors.dominant,
         ),
+        filled: true,
+        fillColor: colors.textfieldaccent,
+        border: InputBorder.none,
+        errorStyle: TextStyle(color: colors.dominant),
         hintText: 'Password',
         suffixIcon: InkWell(
           onTap: _togglePasswordVisibilty,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.accent,
+            color: colors.dominant,
           ),
         ),
       ),
@@ -213,15 +233,19 @@ class _RegisterState extends State<Register> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.accent,
+          color: colors.dominant,
         ),
+        filled: true,
+        fillColor: colors.textfieldaccent,
+        border: InputBorder.none,
+        errorStyle: TextStyle(color: colors.dominant),
         hintText: 'Confirm Password',
         // labelText: 'Password',
         suffixIcon: InkWell(
           onTap: _toggleConfirmPasswordVisibilty,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.accent,
+            color: colors.dominant,
           ),
         ),
       ),
@@ -230,8 +254,8 @@ class _RegisterState extends State<Register> {
 
     final signUpButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.accent,
       child: MaterialButton(
         onPressed: () {
           signUp(emailEditingController.text, passwordEditingController.text);
@@ -267,21 +291,35 @@ class _RegisterState extends State<Register> {
               child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 5),
                     child: Center(
                       child: CustomImage(
-                          'assets/images/register.png', 151.0, 214.0),
+                          'assets/images/sign-up-image.png', 200.0, 200.0),
                     ),
                   ),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: Center(
-                      child: Text(
-                        'Create an Account',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Create an Account',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 32,
+                              fontFamily: "Open Sans",
+                              color: colors.accent,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Text(
+                              "Create a new account",
+                              style: TextStyle(
+                                  fontSize: 16, color: colors.lightgrey),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),

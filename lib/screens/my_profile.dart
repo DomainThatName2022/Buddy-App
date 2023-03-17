@@ -241,7 +241,7 @@ class _MyProfileState extends State<MyProfile> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
-                                  '--------',
+                                  '- - - - - - - -',
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700),
@@ -262,7 +262,7 @@ class _MyProfileState extends State<MyProfile> {
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
-                                  '--------',
+                                  '- - - - - - - -',
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w700),

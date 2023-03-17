@@ -1,3 +1,4 @@
+import 'package:buddy_app/theme/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class NotificationIcon extends StatefulWidget {
@@ -9,6 +10,7 @@ class NotificationIcon extends StatefulWidget {
 
 class _NotificationIconState extends State<NotificationIcon> {
   int _counter = 0;
+  final colors = ColorPalette();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -16,9 +18,9 @@ class _NotificationIconState extends State<NotificationIcon> {
       height: 30,
       child: Stack(
         children: [
-          const Icon(
+          Icon(
             Icons.notifications,
-            color: Colors.white,
+            color: colors.accent,
             size: 30,
           ),
           Container(
@@ -31,7 +33,7 @@ class _NotificationIconState extends State<NotificationIcon> {
               height: 15,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color(0xffc32c37),
+                  color: colors.dominant,
                   border: Border.all(color: Colors.white, width: 1)),
               child: Padding(
                 padding: const EdgeInsets.all(0.0),

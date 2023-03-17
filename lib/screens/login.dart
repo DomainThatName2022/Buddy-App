@@ -65,8 +65,12 @@ class _LoginState extends State<Login> {
       decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.mail,
-            color: colors.accent,
+            color: colors.dominant,
           ),
+          filled: true,
+          fillColor: colors.textfieldaccent,
+          border: InputBorder.none,
+          errorStyle: TextStyle(color: colors.dominant),
           hintText: 'Email'),
       cursorColor: colors.dominant,
     );
@@ -94,15 +98,19 @@ class _LoginState extends State<Login> {
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
-          color: colors.accent,
+          color: colors.dominant,
         ),
+        filled: true,
+        fillColor: colors.textfieldaccent,
+        border: InputBorder.none,
+        errorStyle: TextStyle(color: colors.dominant),
         hintText: 'Password',
         // labelText: 'Password',
         suffixIcon: InkWell(
           onTap: _togglePasswordView,
           child: Icon(
             _isHidden ? Icons.visibility_off : Icons.visibility,
-            color: colors.accent,
+            color: colors.dominant,
           ),
         ),
       ),
@@ -111,8 +119,8 @@ class _LoginState extends State<Login> {
 
     final loginButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.accent,
       child: MaterialButton(
         onPressed: () {
           signIn(emailcontroller.text, passwordcontroller.text);
@@ -120,7 +128,7 @@ class _LoginState extends State<Login> {
         minWidth: MediaQuery.of(context).size.width,
         height: 58,
         child: const Text(
-          'Login',
+          'Sign In',
           textAlign: TextAlign.center,
           style: TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
@@ -137,21 +145,36 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(top: 70),
+                      padding: const EdgeInsets.only(top: 30),
                       child: Center(
                         child: CustomImage(
-                            'assets/images/good_dog.png', 200.0, 250.0),
+                            'assets/images/login-image.png', 250.0, 250.0),
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(top: 20),
                       child: Center(
-                        child: Text(
-                          'Please log in',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Welcome Back',
+                              style: TextStyle(
+                                color: colors.accent,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 32,
+                                fontFamily: "Open Sans",
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Text(
+                                "Sign in to continue",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16, color: colors.lightgrey),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -168,58 +191,44 @@ class _LoginState extends State<Login> {
                                 height: 50,
                               ),
                               passwordField,
-                              const SizedBox(
-                                height: 40,
+
+                              //Forgot Password
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 30, bottom: 30),
+                                child: Container(
+                                  alignment: Alignment.topRight,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const ForgotPassword()));
+                                    },
+                                    child: Text(
+                                      'Forgot Password?',
+                                      style: TextStyle(
+                                          color: colors.dominant,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
                               ),
                               loginButton
                             ],
                           ),
                         )),
 
-                    //Remember me Checkbox
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5),
-                            child: Column(
-                              children: [
-                                // Icon(Icons.check_box_outline_blank)
-                                InkWell(
-                                  onTap: _toggleRememberMe,
-                                  child: Icon(
-                                    _isChecked
-                                        ? Icons.check_box_outline_blank
-                                        : Icons.check_box_outlined,
-                                    color: colors.dominant,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            children: const [
-                              Text(
-                                'Remember me',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 16),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-
                     //Divider (Horizontal line)
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
+                      padding: const EdgeInsets.fromLTRB(40, 10, 40, 0),
                       child: Row(children: <Widget>[
                         Expanded(
                             child: Divider(
                           thickness: 1,
-                          color: colors.gray,
+                          color: colors.lightgrey,
                           height: 50,
                         )),
                         const Text(
@@ -230,7 +239,7 @@ class _LoginState extends State<Login> {
                         Expanded(
                             child: Divider(
                           thickness: 1,
-                          color: colors.gray,
+                          color: colors.lightgrey,
                           height: 50,
                         )),
                       ]),
@@ -241,61 +250,47 @@ class _LoginState extends State<Login> {
                       padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
                       child: Row(children: <Widget>[
                         Expanded(
-                            child: OutlinedButton(
-                                onPressed: () => {debugPrint('Button Clicked')},
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Image.asset('assets/images/google.png'),
-                                      const Text('Google'),
-                                    ],
-                                  ),
-                                ),
-                                style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
-                                        width: 2.0, color: colors.gray),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10))))),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Expanded(
-                            child: OutlinedButton(
+                            child: TextButton(
                           onPressed: () => {debugPrint('Button Clicked')},
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                             child: Row(
                               children: <Widget>[
-                                Image.asset('assets/images/facebook.png'),
-                                const Text('Facebook'),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 40),
+                                  child: CustomImage(
+                                      'assets/images/google-logo.png',
+                                      50.0,
+                                      50.0),
+                                ),
                               ],
                             ),
                           ),
-                          style: OutlinedButton.styleFrom(
-                              side: BorderSide(width: 2.0, color: colors.gray),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
+                        )),
+                        Expanded(
+                            child: TextButton(
+                          onPressed: () => {debugPrint('Button Clicked')},
+                          child: Row(
+                            children: <Widget>[
+                              CustomImage('assets/images/facebook-logo.png',
+                                  70.0, 80.0),
+                            ],
+                          ),
                         )),
                       ]),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
-                      child: Divider(
-                        thickness: 1,
-                        color: colors.gray,
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(50, 10, 40, 0),
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 40),
                       child: Center(
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Text("Don't have an account yet?"),
+                          const Text(
+                            "Don't have an account yet?",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           GestureDetector(
                               onTap: () => {
                                     Navigator.push(
@@ -304,46 +299,18 @@ class _LoginState extends State<Login> {
                                             builder: (_) => const Register()))
                                   },
                               child: Padding(
-                                padding: const EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(3, 0, 0, 0),
                                 child: Text(
-                                  'Sign up',
+                                  'create a new account',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                     color: colors.dominant,
-                                    decoration: TextDecoration.underline,
                                   ),
                                 ),
                               ))
                         ],
                       )),
-                    ),
-
-                    const SizedBox(
-                      height: 20,
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ForgotPassword()));
-                          },
-                          child: const Text(
-                            'Forgot Password',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
                     ),
                   ],
                 ),
