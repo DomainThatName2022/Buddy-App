@@ -15,6 +15,13 @@ class CustomImage extends StatelessWidget {
         /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-        child: Image.asset(_assetPath));
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              _assetPath,
+              height: 70,
+              width: 70,
+              fit: BoxFit.cover,
+            )));
   }
 }

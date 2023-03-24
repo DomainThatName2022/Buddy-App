@@ -15,8 +15,8 @@
 14-->E:\DomainThatName\Buddy\Flutter-Buddy-App\buddy_app\android\app\src\debug\AndroidManifest.xml:6:5-66
 14-->E:\DomainThatName\Buddy\Flutter-Buddy-App\buddy_app\android\app\src\debug\AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\bb6bba8952e997b80f1b36d642dc5345\jetified-firebase-auth-21.1.0\AndroidManifest.xml:24:5-79
-15-->[com.google.firebase:firebase-auth:21.1.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\bb6bba8952e997b80f1b36d642dc5345\jetified-firebase-auth-21.1.0\AndroidManifest.xml:24:22-76
+15-->E:\DomainThatName\Buddy\Flutter-Buddy-App\buddy_app\android\app\src\main\AndroidManifest.xml:35:5-79
+15-->E:\DomainThatName\Buddy\Flutter-Buddy-App\buddy_app\android\app\src\main\AndroidManifest.xml:35:22-76
 16    <uses-permission android:name="android.permission.WAKE_LOCK" />
 16-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\fde35e2830045a4aba306774f1df4bdf\jetified-play-services-measurement-api-21.2.0\AndroidManifest.xml:24:5-68
 16-->[com.google.android.gms:play-services-measurement-api:21.2.0] C:\Users\user\.gradle\caches\transforms-2\files-2.1\fde35e2830045a4aba306774f1df4bdf\jetified-play-services-measurement-api-21.2.0\AndroidManifest.xml:24:22-65

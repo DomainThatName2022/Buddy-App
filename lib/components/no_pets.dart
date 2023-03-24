@@ -25,8 +25,8 @@ class NoPets extends StatelessWidget {
                     'No Pets to Show',
                     style: TextStyle(
                         fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: colors.dominant),
+                        fontWeight: FontWeight.w900,
+                        color: colors.accent),
                   ),
                 ),
                 SizedBox(

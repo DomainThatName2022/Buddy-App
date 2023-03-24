@@ -1,3 +1,4 @@
+import 'package:buddy_app/theme/color_palette.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropDownMenu extends StatelessWidget {
@@ -15,11 +16,17 @@ class CustomDropDownMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonHideUnderline(
-        child: Padding(
-      padding: const EdgeInsets.all(5.0),
+    //Color Palette
+    final colors = ColorPalette();
+
+    return Container(
+      padding: EdgeInsets.all(10),
       child: DropdownButtonFormField<String>(
-        decoration: const InputDecoration.collapsed(hintText: ''),
+        decoration: InputDecoration.collapsed(
+            border: InputBorder.none,
+            hintText: 'hintText',
+            filled: true,
+            fillColor: colors.textfieldaccent),
         hint: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
@@ -31,9 +38,9 @@ class CustomDropDownMenu extends StatelessWidget {
         ),
         isExpanded: true,
         iconSize: 40,
-        icon: const Icon(
+        icon: Icon(
           Icons.arrow_drop_down,
-          color: Colors.grey,
+          color: colors.dominant,
         ),
         items: _list.map((String value) {
           return DropdownMenuItem<String>(
@@ -50,6 +57,6 @@ class CustomDropDownMenu extends StatelessWidget {
         value: _selectedOption,
         validator: _validator,
       ),
-    ));
+    );
   }
 }

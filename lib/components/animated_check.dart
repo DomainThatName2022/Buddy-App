@@ -43,13 +43,13 @@ class _AnimatedCheckState extends State<AnimatedCheck>
   Widget build(BuildContext context) {
     //ColorPalette
     const colors = ColorPalette();
-    double circleSize = 200;
-    double iconSize = 100;
+    double circleSize = 150;
+    double iconSize = 80;
 
     final doneButton = Material(
         elevation: 5,
-        borderRadius: BorderRadius.circular(20),
-        color: colors.dominant,
+        borderRadius: BorderRadius.circular(8),
+        color: colors.accent,
         child: MaterialButton(
           onPressed: () {
             //Navigate back to MyPets screen
@@ -58,7 +58,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
           },
           minWidth: MediaQuery.of(context).size.width,
           height: 58,
-          child: const Text(
+          child: Text(
             'Done',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -79,7 +79,7 @@ class _AnimatedCheckState extends State<AnimatedCheck>
                   height: circleSize,
                   width: circleSize,
                   decoration: BoxDecoration(
-                    color: colors.dominant,
+                    color: colors.dominantTweaked,
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -98,12 +98,12 @@ class _AnimatedCheckState extends State<AnimatedCheck>
                     'Pet Added Succefully',
                     style: TextStyle(
                         fontSize: 16,
-                        color: colors.dominant,
-                        fontWeight: FontWeight.w700),
+                        color: colors.accent,
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(80, 100, 80, 0),
+                  padding: const EdgeInsets.fromLTRB(40, 100, 40, 0),
                   child: doneButton,
                 )
               ],

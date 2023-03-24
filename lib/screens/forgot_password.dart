@@ -119,7 +119,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       height: 10,
                     ),
                     CustomImage(
-                        'assets/images/forgot_password.png', 250.0, 333.0),
+                        'assets/images/Forgot_password.png', 250.0, 333.0),
                     Padding(
                       padding: EdgeInsets.only(top: 10),
                       child: Center(

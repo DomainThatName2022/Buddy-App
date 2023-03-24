@@ -14,20 +14,20 @@ class _NotificationIconState extends State<NotificationIcon> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 30,
-      height: 30,
+      width: 40,
+      height: 40,
       child: Stack(
         children: [
           Icon(
             Icons.notifications,
             color: colors.accent,
-            size: 30,
+            size: 35,
           ),
           Container(
             width: 30,
             height: 30,
             alignment: Alignment.topRight,
-            margin: const EdgeInsets.only(top: 5),
+            margin: const EdgeInsets.only(top: 5, left: 5),
             child: Container(
               width: 15,
               height: 15,

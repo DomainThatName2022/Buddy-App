@@ -241,10 +241,10 @@ class _PetState extends State<Pet> {
                     decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(15)),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(8),
                       child: CachedNetworkImage(
                         imageUrl: "${widget._pet.mediaUrlList[0]}",
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                         placeholder: (context, url) =>
                             Center(child: CircularProgressIndicator()),
                         errorWidget: (context, url, error) => Icon(Icons.error),

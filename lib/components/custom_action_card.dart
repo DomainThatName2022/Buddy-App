@@ -6,19 +6,28 @@ class CustomActionCard extends StatelessWidget {
 
   final String _action;
   final String _actiondesc;
+  final VoidCallback _ontap;
 
-  const CustomActionCard(this._action, this._actiondesc);
+  const CustomActionCard(this._action, this._actiondesc, this._ontap);
 
   @override
   Widget build(BuildContext context) {
     final colors = ColorPalette();
     return GestureDetector(
-      onTap: () {},
+      onTap: _ontap,
       child: Container(
         height: 100,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: colors.dominantTweaked),
+            color: colors.dominantTweaked,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 3,
+                offset: Offset(0, 4),
+              )
+            ]),
         child: Column(
           children: [
             Padding(
@@ -27,7 +36,6 @@ class CustomActionCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   _action,
-                  // "Report a missing Pet",
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,

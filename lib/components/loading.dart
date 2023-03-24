@@ -15,21 +15,20 @@ class Loading extends StatelessWidget {
 
     return Material(
       child: Container(
-        color: colors.accentTweaked,
+        color: Colors.white,
         child: Center(
           child: Container(
             height: 200,
             width: 200,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: colors.dominant),
+                borderRadius: BorderRadius.circular(15), color: Colors.white),
             child: Center(
               child: Column(
                 children: [
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(top: 30),
                     child: SpinKitFadingCircle(
-                      color: Colors.white,
+                      color: colors.dominant,
                       size: 80,
                     ),
                   ),
@@ -40,7 +39,7 @@ class Loading extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
-                          color: Colors.white),
+                          color: colors.accent),
                     ),
                   )
                 ],

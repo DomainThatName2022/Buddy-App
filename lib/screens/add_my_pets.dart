@@ -110,24 +110,29 @@ class _AddMyPetsState extends State<AddMyPets> {
       },
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        label: const Text(
+        label: Text(
           'Enter Pet Name',
           style: TextStyle(
             color: Colors.black,
           ),
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Colors.grey,
-            width: 2,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          gapPadding: 0.0,
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.dominant, width: 2),
-        ),
+
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(8),
+        //   borderSide: const BorderSide(
+        //     color: Colors.grey,
+        //     width: 2,
+        //   ),
+        // ),
+        // focusedBorder: OutlineInputBorder(
+        //   gapPadding: 0.0,
+        //   borderRadius: BorderRadius.circular(15),
+        //   borderSide: BorderSide(color: colors.dominant, width: 2),
+        // ),
+        filled: true,
+        fillColor: colors.textfieldaccent,
+        border: InputBorder.none,
+        errorStyle: TextStyle(color: colors.dominant),
       ),
       cursorColor: colors.dominant,
     );
@@ -289,8 +294,8 @@ class _AddMyPetsState extends State<AddMyPets> {
     //Submit Button
     final saveButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.accent,
       child: MaterialButton(
         onPressed: isUploading
             ? null
@@ -310,13 +315,14 @@ class _AddMyPetsState extends State<AddMyPets> {
 
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
+          title: Text(
             'Add Pets',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: colors.accent, fontWeight: FontWeight.w800),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: colors.dominant,
+          iconTheme: IconThemeData(color: colors.accent),
+          backgroundColor: Colors.white,
           centerTitle: true,
+          elevation: 0,
           actions: const [
             Padding(
               padding: EdgeInsets.only(top: 12, right: 20),
@@ -326,7 +332,7 @@ class _AddMyPetsState extends State<AddMyPets> {
       body: isUploading
           ? Loading('Adding Pet Entry...')
           : Container(
-              color: colors.accentTweaked,
+              color: Colors.white,
               child: SingleChildScrollView(
                 child: Center(
                   child: Padding(
@@ -383,10 +389,13 @@ class _AddMyPetsState extends State<AddMyPets> {
                                                                         .circular(
                                                                             25),
                                                                 color: colors
-                                                                    .accent),
+                                                                    .dominantTweaked),
                                                             child: IconButton(
                                                               icon: const Icon(
-                                                                  Icons.add),
+                                                                Icons.add,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
                                                               onPressed:
                                                                   limitReached
                                                                       ? null
@@ -406,13 +415,13 @@ class _AddMyPetsState extends State<AddMyPets> {
                                                       child: ClipRRect(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(15),
+                                                                .circular(8),
                                                         child: Image(
                                                           image: FileImage(
                                                             _imageList[
                                                                 index - 1],
                                                           ),
-                                                          fit: BoxFit.fill,
+                                                          fit: BoxFit.cover,
                                                         ),
                                                       ),
                                                     ),

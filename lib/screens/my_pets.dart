@@ -61,13 +61,14 @@ class _MyPetsState extends State<MyPets> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text(
+          title: Text(
             'My Pets',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: colors.accent, fontWeight: FontWeight.w800),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: colors.dominant,
+          iconTheme: IconThemeData(color: colors.accent),
+          backgroundColor: Colors.white,
           centerTitle: true,
+          elevation: 0,
           actions: const [
             Padding(
               padding: EdgeInsets.only(top: 12, right: 20),
@@ -86,7 +87,7 @@ class _MyPetsState extends State<MyPets> {
               child: Container(
                 color: colors.accentTweaked,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 5),
                   child: ListView.builder(
                     itemCount: _petList.length,
                     itemBuilder: (context, index) {
@@ -117,7 +118,7 @@ class _MyPetsState extends State<MyPets> {
               Icons.add,
               color: Colors.white,
             ),
-            backgroundColor: colors.dominant,
+            backgroundColor: colors.dominantTweaked,
             onPressed: () {
               //Navigate to AddPets screen
               Navigator.push(context,

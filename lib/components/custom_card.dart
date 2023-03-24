@@ -49,7 +49,7 @@ class CustomCard extends StatelessWidget {
                   _imageurl,
                   height: 70,
                   width: 70,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

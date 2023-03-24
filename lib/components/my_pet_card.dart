@@ -37,14 +37,14 @@ class MyPetCard extends StatelessWidget {
                             height: 80,
                             width: 90,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(8),
                               color: colors.accentTweaked,
                             ),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(8),
                               child: CachedNetworkImage(
                                 imageUrl: "${_pet.mediaUrlList[0]}",
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                                 placeholder: (context, url) =>
                                     Center(child: CircularProgressIndicator()),
                                 errorWidget: (context, url, error) =>
