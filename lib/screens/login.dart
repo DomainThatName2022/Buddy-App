@@ -180,9 +180,7 @@ class _LoginState extends State<Login> {
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
-                        child:
-                            // CustomTextField('abc@gmail.com', 'Email'),
-                            Form(
+                        child: Form(
                           key: _formKey,
                           child: Column(
                             children: <Widget>[

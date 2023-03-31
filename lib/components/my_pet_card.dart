@@ -8,117 +8,119 @@ class MyPetCard extends StatelessWidget {
 
   //PetModel
   final PetModel _pet;
-  // bool petImageLoading = false;
+  bool petImageLoading = false;
 
-  MyPetCard(this._onTap, this._pet);
+  final String _age;
+  // final VoidCallback _onTap;
+
+  MyPetCard(this._onTap, this._pet, this._age);
 
   @override
   Widget build(BuildContext context) {
     //Color Palette
     final colors = const ColorPalette();
+
+    //Gender Icons and color
+    final IconData _male = Icons.male;
+    final IconData _female = Icons.female;
+
     return GestureDetector(
-      child: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: Card(
-          elevation: 8,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-          child: ClipPath(
-            child: SizedBox(
-              height: 110,
+      onTap: _onTap,
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 3,
+                blurRadius: 5,
+                offset: Offset(0, 2),
+              )
+            ]),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 130,
+                width: 150,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: CachedNetworkImage(
+                    imageUrl: "${_pet.mediaUrlList[0]}",
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) =>
+                        Center(child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Container(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "${_pet.name}",
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 3),
+              child: Container(
+                width: 150,
+                height: 33,
+                child: Text(
+                  "${_pet.description!.isEmpty ? "No Description to display" : _pet.description}",
+                  style: TextStyle(fontSize: 14, color: colors.dominant),
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.only(left: 15),
+                        child: Text(
+                          "${_pet.yearOfBirth}",
+                          style:
+                              TextStyle(fontSize: 14, color: colors.lightgrey),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10),
                         child: Container(
-                            height: 80,
-                            width: 90,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: colors.accentTweaked,
+                              borderRadius: BorderRadius.circular(2),
+                              color: _pet.petGender == "Male"
+                                  ? colors.male
+                                  : colors.female,
                             ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: CachedNetworkImage(
-                                imageUrl: "${_pet.mediaUrlList[0]}",
-                                fit: BoxFit.cover,
-                                placeholder: (context, url) =>
-                                    Center(child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
-                              ),
+                            child: Icon(
+                              _pet.petGender == "Male" ? _male : _female,
+                              size: 20,
+                              color: Colors.white,
                             )),
                       )
                     ],
                   ),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 15,
-                          ),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: SizedBox(
-                              height: 25,
-                              width: 180,
-                              child: Text(
-                                "${_pet.name}",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: SizedBox(
-                              height: 45,
-                              width: 175,
-                              child: Text(
-                                "${_pet.description!.isEmpty ? "No Description to display" : _pet.description}",
-                                style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40, right: 25),
-                        child: Material(
-                          child: InkWell(
-                            child: const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 25,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
                 ],
               ),
-            ),
-          ),
+            )
+          ],
         ),
       ),
-      onTap: _onTap,
     );
   }
 }

@@ -1,8 +1,7 @@
 // import 'dart:html';
-
 import 'package:buddy_app/model/pet.dart';
 import 'package:buddy_app/theme/color_palette.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../components/custom_bottom_navigation.dart';
@@ -56,10 +55,10 @@ class _PetState extends State<Pet> {
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: 'Username',
-        fillColor: Colors.white,
+        fillColor: colors.textfieldaccent,
         filled: true,
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.white, width: 3.0),
+          borderSide: BorderSide(color: colors.textfieldaccent, width: 3.0),
           borderRadius: BorderRadius.circular(8),
         ),
       ),
@@ -69,14 +68,14 @@ class _PetState extends State<Pet> {
     //Submit Button
     final submitButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(5),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.dominantTweaked,
       child: MaterialButton(
         onPressed: () {},
         minWidth: MediaQuery.of(context).size.width,
-        height: 10,
+        height: 58,
         child: const Text(
-          'Send Invite',
+          'Invite',
           textAlign: TextAlign.center,
           style: TextStyle(
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
@@ -87,8 +86,8 @@ class _PetState extends State<Pet> {
     //Report Button
     final reportButton = Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: colors.dominant,
+      borderRadius: BorderRadius.circular(8),
+      color: colors.dominantTweaked,
       child: MaterialButton(
         onPressed: () {},
         minWidth: MediaQuery.of(context).size.width,
@@ -103,22 +102,21 @@ class _PetState extends State<Pet> {
     );
 
     //Delete Button
-    final deleteButton = Material(
-      elevation: 5,
-      borderRadius: BorderRadius.circular(20),
-      color: Colors.red[400],
-      child: MaterialButton(
-        onPressed: () {},
-        minWidth: MediaQuery.of(context).size.width,
-        height: 58,
-        child: const Text(
+    final deleteButton = OutlinedButton(
+        child: Text(
           'Delete Pet',
-          textAlign: TextAlign.center,
           style: TextStyle(
-              color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+              color: colors.dominantTweaked,
+              fontSize: 15,
+              fontWeight: FontWeight.bold),
         ),
-      ),
-    );
+        style: OutlinedButton.styleFrom(
+            primary: colors.dominantTweaked,
+            side: BorderSide(
+              color: colors.dominantTweaked,
+              width: 2,
+            )),
+        onPressed: () => {});
 
     //Address
     final addressField = TextFormField(
@@ -149,19 +147,19 @@ class _PetState extends State<Pet> {
           color: Colors.red[200],
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Colors.grey,
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: colors.textfieldaccent,
             width: 2,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(color: colors.dominant, width: 2),
         ),
       ),
-      cursorColor: colors.dominant,
+      cursorColor: colors.dominantTweaked,
     );
 
     //date pet was last seen
@@ -190,24 +188,24 @@ class _PetState extends State<Pet> {
                 color: Colors.black,
               ),
             ),
-            suffixIcon: const Icon(
+            suffixIcon: Icon(
               Icons.calendar_today,
-              color: Colors.grey,
+              color: colors.dominantTweaked,
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                color: Colors.grey,
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(
+                color: colors.textfieldaccent,
                 width: 2,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               gapPadding: 0.0,
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.dominant, width: 2),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: colors.textfieldaccent, width: 2),
             ),
           ),
-          cursorColor: colors.dominant,
+          cursorColor: colors.dominantTweaked,
         ),
       ),
     );
@@ -216,11 +214,12 @@ class _PetState extends State<Pet> {
       appBar: AppBar(
           title: Text(
             "${widget._pet.name}",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: colors.accent, fontWeight: FontWeight.w800),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: colors.dominant,
+          iconTheme: IconThemeData(color: colors.dominantTweaked),
+          backgroundColor: Colors.white,
           centerTitle: true,
+          elevation: 0,
           actions: const [
             Padding(
               padding: EdgeInsets.only(top: 12, right: 20),
@@ -228,7 +227,7 @@ class _PetState extends State<Pet> {
             ),
           ]),
       body: Container(
-        color: colors.accentTweaked,
+        color: Colors.white,
         child: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -236,12 +235,10 @@ class _PetState extends State<Pet> {
               child: Column(
                 children: [
                   Container(
-                    width: 305,
-                    height: 260,
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    width: 340,
+                    height: 270,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(30),
                       child: CachedNetworkImage(
                         imageUrl: "${widget._pet.mediaUrlList[0]}",
                         fit: BoxFit.cover,
@@ -252,176 +249,162 @@ class _PetState extends State<Pet> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 40),
+                    padding: const EdgeInsets.only(top: 20, left: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Pet Details',
+                        '${widget._pet.name}',
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.red[400]),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: colors.accent),
                       ),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 40, right: 40),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: colors.accentTweaked),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Pet Type: ',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "${widget._pet.petType}",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 40, right: 40),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: colors.accentTweaked),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Pet Breed: ',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "${widget._pet.petBreed}",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 40, right: 40),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: colors.accentTweaked),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Year of Birth: ',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "${widget._pet.yearOfBirth}",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 40, right: 40),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: colors.accentTweaked),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Gender: ',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w800),
-                            ),
-                            Text(
-                              "${widget._pet.petGender}",
-                              style: TextStyle(fontSize: 18),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 40),
+                    padding: const EdgeInsets.only(top: 10, left: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Invite for Co-parenting?',
+                        '${widget._pet.petBreed}',
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.red[400]),
+                            fontSize: 20,
+                            fontWeight: FontWeight.normal,
+                            color: colors.lightgrey),
                       ),
                     ),
                   ),
                   Padding(
-                    padding:
-                        const EdgeInsets.only(top: 30, left: 40, right: 40),
+                    padding: EdgeInsets.only(top: 20, left: 40, right: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 3),
+                                  child: Icon(
+                                    widget._pet.petGender == "Male"
+                                        ? Icons.male
+                                        : Icons.female,
+                                    color: widget._pet.petGender == "Male"
+                                        ? colors.male
+                                        : colors.female,
+                                  ),
+                                ),
+                                Text(
+                                  '${widget._pet.petGender}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 3),
+                                  child: Icon(
+                                    Icons.timelapse_outlined,
+                                    color: colors.dominantTweaked,
+                                  ),
+                                ),
+                                Text(
+                                  '${widget._pet.yearOfBirth}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 3),
+                                  child: Icon(
+                                    Icons.pets,
+                                    color: colors.accent,
+                                  ),
+                                ),
+                                Text(
+                                  '${widget._pet.petType}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      // color: Colors.amber[50],
+                      child: Text(
+                        "${widget._pet.description}",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                  ),
+                  //Co-parenting Section
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 40),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Co-Parenting',
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: colors.accent),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 40, right: 40, top: 20),
                     child: Form(
-                      key: _coParentingFormKey,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: colors.accentTweaked),
-                        height: 80,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          // crossAxisAlignment: CrossAxisAlignment.stretch,
+                        key: _coParentingFormKey,
+                        child: Column(
                           children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: coParentField,
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: submitButton,
-                              ),
-                            ),
+                            coParentField,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: submitButton,
+                            )
                           ],
-                        ),
-                      ),
-                    ),
+                        )),
                   ),
+                  //Report pet as missing Section
                   Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 40),
+                    padding: const EdgeInsets.only(top: 40, left: 40),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Flag this pet as missing?',
+                        'Report pet as missing',
                         style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.red[400]),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: colors.accent),
                       ),
                     ),
                   ),
@@ -431,7 +414,7 @@ class _PetState extends State<Pet> {
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: colors.accentTweaked),
+                          color: colors.textfieldaccent),
                       height: 80,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -450,7 +433,7 @@ class _PetState extends State<Pet> {
                                     _flag = value;
                                   });
                                 },
-                                activeColor: colors.dominant,
+                                activeColor: colors.dominantTweaked,
                               ),
                             ),
                           )),
@@ -467,7 +450,7 @@ class _PetState extends State<Pet> {
                                       _flag = value;
                                     });
                                   },
-                                  activeColor: colors.dominant,
+                                  activeColor: colors.dominantTweaked,
                                 ),
                               ),
                             ),
@@ -481,16 +464,16 @@ class _PetState extends State<Pet> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 40, right: 40),
+                                padding:
+                                    const EdgeInsets.only(top: 40, left: 40),
                                 child: Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Please fill in below*',
+                                    'Please fill in below',
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.red[400]),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        color: colors.accent),
                                   ),
                                 ),
                               ),
@@ -514,7 +497,8 @@ class _PetState extends State<Pet> {
                                           right: 40,
                                           left: 40,
                                           bottom: 50),
-                                      child: reportButton,
+                                      child: Container(
+                                          width: 400, child: reportButton),
                                     ),
                                   ],
                                 ),
@@ -526,7 +510,10 @@ class _PetState extends State<Pet> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 40, left: 40, right: 40, bottom: 50),
-                            child: deleteButton,
+                            child: Container(
+                                width: 400.0,
+                                height: 56.0,
+                                child: deleteButton),
                           ),
                         )
                 ],
@@ -571,12 +558,5 @@ class _PetState extends State<Pet> {
         dateController.text = date;
       });
     }
-
-    // _deletePet(index) async {
-    //   await FirebaseFirestore.instance
-    //       .runTransaction((Transaction myTransaction) async {
-    //     await myTransaction.delete(snapshot.data.documents[index].reference);
-    //   });
-    // }
   }
 }

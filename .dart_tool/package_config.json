@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "age_calculator",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/age_calculator-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "animated_check",
       "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/animated_check-1.0.5",
       "packageUri": "lib/",
@@ -52,6 +58,12 @@
     {
       "name": "cached_network_image_web",
       "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/cached_network_image_web-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "carousel_slider",
+      "rootUri": "file:///C:/Users/user/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/carousel_slider-4.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -566,7 +578,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2023-03-20T08:21:46.403709Z",
+  "generated": "2023-03-30T07:18:33.511006Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }

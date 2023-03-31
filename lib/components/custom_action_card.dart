@@ -16,7 +16,7 @@ class CustomActionCard extends StatelessWidget {
     return GestureDetector(
       onTap: _ontap,
       child: Container(
-        height: 100,
+        height: 120,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: colors.dominantTweaked,
@@ -31,7 +31,7 @@ class CustomActionCard extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
               child: Container(
                 alignment: Alignment.topLeft,
                 child: Text(
@@ -54,7 +54,6 @@ class CustomActionCard extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       _actiondesc,
-                      // "Flag your missing pet and let the buddy community help you find your pet and bring it home.",
                       style: TextStyle(fontSize: 14, color: Colors.white),
                     ),
                   ),
@@ -63,11 +62,9 @@ class CustomActionCard extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 10),
                   child: Container(
                     alignment: Alignment.topRight,
-                    height: 50,
-                    width: 50,
                     child: Icon(
                       Icons.arrow_circle_right,
-                      size: 50,
+                      size: 70,
                       color: Colors.white,
                     ),
                   ),

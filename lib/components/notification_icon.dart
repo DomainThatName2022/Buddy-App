@@ -19,7 +19,7 @@ class _NotificationIconState extends State<NotificationIcon> {
       child: Stack(
         children: [
           Icon(
-            Icons.notifications,
+            Icons.notifications_none_outlined,
             color: colors.accent,
             size: 35,
           ),
@@ -33,7 +33,7 @@ class _NotificationIconState extends State<NotificationIcon> {
               height: 15,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: colors.dominant,
+                  color: colors.dominantTweaked,
                   border: Border.all(color: Colors.white, width: 1)),
               child: Padding(
                 padding: const EdgeInsets.all(0.0),

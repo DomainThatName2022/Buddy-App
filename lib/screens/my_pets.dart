@@ -1,7 +1,7 @@
+import 'package:buddy_app/components/custom_grid_view.dart';
 import 'package:buddy_app/components/my_pet_card.dart';
 import 'package:buddy_app/components/no_pets.dart';
 import 'package:buddy_app/model/pet.dart';
-// import 'package:buddy_app/components/no_pets.dart';
 import 'package:buddy_app/screens/add_my_pets.dart';
 import 'package:buddy_app/screens/home.dart';
 import 'package:buddy_app/screens/pet.dart';
@@ -65,7 +65,7 @@ class _MyPetsState extends State<MyPets> {
             'My Pets',
             style: TextStyle(color: colors.accent, fontWeight: FontWeight.w800),
           ),
-          iconTheme: IconThemeData(color: colors.accent),
+          iconTheme: IconThemeData(color: colors.dominantTweaked),
           backgroundColor: Colors.white,
           centerTitle: true,
           elevation: 0,
@@ -87,24 +87,8 @@ class _MyPetsState extends State<MyPets> {
               child: Container(
                 color: colors.accentTweaked,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: ListView.builder(
-                    itemCount: _petList.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: MyPetCard(
-                            () => {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              Pet(_petList[index])))
-                                },
-                            _petList[index]),
-                      );
-                    },
-                  ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(child: CustomGridView(_petList)),
                 ),
               ),
             )

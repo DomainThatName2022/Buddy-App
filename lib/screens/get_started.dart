@@ -70,7 +70,7 @@ class Get_Started extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Text(
-                      "Our mobile app is here to help! Our state-of-the-art technology uses advanced algorithms to help locate your lost furry friend. With just a few taps on your phone, you can access a powerful network of pet lovers and increase your chances of finding your beloved companion.",
+                      "Our app is here to help! Our state-of-the-art technology uses advanced algorithms to help locate your lost furry friend. With just a few taps on your phone, you can access a powerful network of pet lovers and increase your chances of finding your beloved companion.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 16,
