@@ -6,6 +6,7 @@ import 'package:buddy_app/model/pet.dart';
 import 'package:buddy_app/components/my_pet_card.dart';
 
 import '../theme/color_palette.dart';
+import 'custom_delegate.dart';
 
 class CustomGridView extends StatelessWidget {
   // const CustomGridView({Key? key}) : super(key: key);
@@ -20,11 +21,13 @@ class CustomGridView extends StatelessWidget {
     // final colors = const ColorPalette();
 
     return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-        maxCrossAxisExtent: 220,
-        childAspectRatio: 0.8,
-        // crossAxisSpacing: 0.5,
-        mainAxisSpacing: 20,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
+        // maxCrossAxisExtent: 220,
+        // childAspectRatio: 3 / 4.2,
+        crossAxisCount: 2,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 10,
+        height: 260,
       ),
       itemCount: _list.length,
       itemBuilder: (context, index) {

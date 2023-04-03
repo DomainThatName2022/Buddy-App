@@ -23,10 +23,11 @@ class CustomDropDownMenu extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration.collapsed(
-            border: InputBorder.none,
-            hintText: 'hintText',
-            filled: true,
-            fillColor: colors.textfieldaccent),
+          border: InputBorder.none,
+          hintText: 'hintText',
+          // filled: true,
+          // fillColor: colors.textfieldaccent
+        ),
         hint: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
@@ -40,7 +41,7 @@ class CustomDropDownMenu extends StatelessWidget {
         iconSize: 40,
         icon: Icon(
           Icons.arrow_drop_down,
-          color: colors.dominant,
+          color: colors.dominantTweaked,
         ),
         items: _list.map((String value) {
           return DropdownMenuItem<String>(

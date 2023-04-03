@@ -53,8 +53,8 @@ class _AddMyPetsState extends State<AddMyPets> {
 
   //Date
   DateTime selectedDate = DateTime.now();
-  final List _imageList = [];
-  List imageList = [];
+  final List<File> _imageList = [];
+  List<File> imageList = [];
 
   String errorMessage = "";
 
@@ -116,22 +116,11 @@ class _AddMyPetsState extends State<AddMyPets> {
             color: Colors.black,
           ),
         ),
-
-        // border: OutlineInputBorder(
-        //   borderRadius: BorderRadius.circular(8),
-        //   borderSide: const BorderSide(
-        //     color: Colors.grey,
-        //     width: 2,
-        //   ),
-        // ),
-        // focusedBorder: OutlineInputBorder(
-        //   gapPadding: 0.0,
-        //   borderRadius: BorderRadius.circular(15),
-        //   borderSide: BorderSide(color: colors.dominant, width: 2),
-        // ),
-        filled: true,
-        fillColor: colors.textfieldaccent,
-        border: InputBorder.none,
+        // filled: true,
+        // fillColor: colors.textfieldaccent,
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: colors.textfieldaccent, width: 2)),
         errorStyle: TextStyle(color: colors.dominant),
       ),
       cursorColor: colors.dominant,
@@ -192,22 +181,14 @@ class _AddMyPetsState extends State<AddMyPets> {
                 color: Colors.black,
               ),
             ),
-            suffixIcon: const Icon(
+            suffixIcon: Icon(
               Icons.calendar_today,
-              color: Colors.grey,
+              color: colors.dominantTweaked,
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-              borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 2,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              gapPadding: 0.0,
-              borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.dominant, width: 2),
-            ),
+                borderRadius: BorderRadius.circular(8),
+                borderSide:
+                    BorderSide(color: colors.textfieldaccent, width: 2)),
           ),
           cursorColor: colors.dominant,
         )));
@@ -238,20 +219,11 @@ class _AddMyPetsState extends State<AddMyPets> {
         ),
         suffixIcon: Icon(
           Icons.location_pin,
-          color: Colors.red[200],
+          color: colors.dominantTweaked,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(
-            color: Colors.grey,
-            width: 2,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          gapPadding: 0.0,
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.dominant, width: 2),
-        ),
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: colors.textfieldaccent, width: 2)),
       ),
       cursorColor: colors.dominant,
     );
@@ -276,7 +248,7 @@ class _AddMyPetsState extends State<AddMyPets> {
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(8),
           borderSide: const BorderSide(
             color: Colors.grey,
             width: 2,
@@ -284,8 +256,8 @@ class _AddMyPetsState extends State<AddMyPets> {
         ),
         focusedBorder: OutlineInputBorder(
           gapPadding: 0.0,
-          borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: colors.dominant, width: 2),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: colors.dominantTweaked, width: 2),
         ),
       ),
       cursorColor: colors.dominant,
@@ -339,43 +311,41 @@ class _AddMyPetsState extends State<AddMyPets> {
                     padding: const EdgeInsets.only(top: 30),
                     child: Form(
                       key: _formKey,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 210,
-                            width: 315,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Center(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  // color: colors.accentTweaked,
-                                ),
-                                child: Stack(children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(4),
-                                    child: SizedBox(
-                                      height: 200,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: _imageList.length + 1,
-                                          itemBuilder: (context, index) {
-                                            return index == 0
-                                                ? Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Container(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40, right: 40),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: 210,
+                              width: 315,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Center(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    // color: colors.accentTweaked,
+                                  ),
+                                  child: Stack(children: [
+                                    Container(
+                                      padding: const EdgeInsets.all(4),
+                                      child: SizedBox(
+                                        height: 200,
+                                        child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: _imageList.length + 1,
+                                            itemBuilder: (context, index) {
+                                              return index == 0
+                                                  ? Container(
                                                       width: 200,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(15),
                                                         color: colors
-                                                            .accentTweaked,
+                                                            .textfieldaccent,
                                                       ),
                                                       child: Padding(
                                                         padding:
@@ -405,117 +375,108 @@ class _AddMyPetsState extends State<AddMyPets> {
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                : Padding(
-                                                    padding:
-                                                        EdgeInsets.all(8.0),
-                                                    child: Container(
-                                                      width: 200,
-                                                      child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                        child: Image(
-                                                          image: FileImage(
-                                                            _imageList[
-                                                                index - 1],
+                                                    )
+                                                  : Padding(
+                                                      padding:
+                                                          EdgeInsets.all(8.0),
+                                                      child: Container(
+                                                        width: 200,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                          child: Image(
+                                                            image: FileImage(
+                                                              _imageList[
+                                                                  index - 1],
+                                                            ),
+                                                            fit: BoxFit.cover,
                                                           ),
-                                                          fit: BoxFit.cover,
                                                         ),
                                                       ),
-                                                    ),
-                                                  );
-                                          }),
-                                    ),
-                                  )
-                                ]),
+                                                    );
+                                            }),
+                                      ),
+                                    )
+                                  ]),
+                                ),
                               ),
                             ),
-                          ),
-                          const Padding(
-                            padding:
-                                EdgeInsets.only(right: 30, left: 30, top: 5),
-                            child: Divider(
+                            Divider(
                               color: Colors.grey,
                               thickness: 1,
                               height: 40,
                             ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 40, top: 5),
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Text(
-                                'Pet Information',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w800,
+                            Padding(
+                              padding: EdgeInsets.only(left: 0),
+                              child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Text(
+                                  'Pet Information',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: colors.accent,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: petNameField,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 10),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.fromBorderSide(BorderSide(
-                                      color: colors.gray,
-                                      width: 1,
-                                    )),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: petTypeField),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.fromBorderSide(BorderSide(
-                                      color: colors.gray,
-                                      width: 1,
-                                    )),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: petGenderField),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40),
-                            child: Container(
-                                decoration: BoxDecoration(
-                                    border: Border.fromBorderSide(BorderSide(
-                                      color: colors.gray,
-                                      width: 1,
-                                    )),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: petBreedField),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40),
-                            child: yearOfBirthField,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40),
-                            child: addressField,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40),
-                            child: descField,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 30, right: 30, top: 40, bottom: 50),
-                            child: saveButton,
-                          )
-                        ],
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: petNameField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.fromBorderSide(BorderSide(
+                                        color: colors.gray,
+                                        width: 1,
+                                      )),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: petTypeField),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.fromBorderSide(BorderSide(
+                                        color: colors.gray,
+                                        width: 1,
+                                      )),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: petGenderField),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.fromBorderSide(BorderSide(
+                                        color: colors.gray,
+                                        width: 1,
+                                      )),
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: petBreedField),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: yearOfBirthField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: addressField,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40),
+                              child: descField,
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 40, bottom: 50),
+                              child: saveButton,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -536,13 +497,13 @@ class _AddMyPetsState extends State<AddMyPets> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
-                primary: colors.dominant,
+                primary: colors.dominantTweaked,
                 onPrimary: Colors.white,
                 onSurface: Colors.black,
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: Colors.black, // button text color
+                  foregroundColor: Colors.black, // button text color
                 ),
               ),
             ),
@@ -560,6 +521,7 @@ class _AddMyPetsState extends State<AddMyPets> {
     }
   }
 
+  //Remove image
   removeImage(index) async {
     setState(() {
       _imageList.removeAt(index - 1);
@@ -595,7 +557,7 @@ class _AddMyPetsState extends State<AddMyPets> {
   }
 
   Future<void> retrieveLostData() async {
-    final LostData response = await ImagePicker().getLostData();
+    final LostDataResponse response = await ImagePicker().retrieveLostData();
     if (response.isEmpty) {
       return;
     }
@@ -609,52 +571,53 @@ class _AddMyPetsState extends State<AddMyPets> {
   }
 
   //Compress images and put in a list
-  compressImages(imageList) async {
-    List<File> compressedImgList = [];
+  Future<List<File>> compressImages(List<File> imageList) async {
+    List<Future<File>> compressedImgFutures = [];
     for (var file in imageList) {
       final tempDir = await getTemporaryDirectory();
       final path = tempDir.path;
-      Im.Image? imageFile = Im.decodeImage(file.readAsBytesSync());
-      final compressedImgFile = File('$path/img_$petId.jpg')
-        ..writeAsBytesSync(Im.encodeJpg(imageFile!, quality: 85));
-      compressedImgList.add(compressedImgFile);
+      compressedImgFutures.add(compressImage(file, path));
     }
 
-    setState(() {
-      imageList = compressedImgList;
-    });
+    List<File> compressedImgList = await Future.wait(compressedImgFutures);
+
+    return compressedImgList;
+  }
+
+  Future<File> compressImage(File file, String path) async {
+    Im.Image? imageFile = Im.decodeImage(file.readAsBytesSync());
+    final compressedImgFile = File('$path/img_$petId.jpg')
+      ..writeAsBytesSync(Im.encodeJpg(imageFile!, quality: 70));
+
+    return compressedImgFile;
   }
 
   //Upload Image Files to Firebase
-  Future<List> uploadImageFiles(selectedPetType, imagelist) async {
-    int cntr = 0;
-    List downloadUrlsList = [];
-    String downloadUrl;
+  Future<List<String>> uploadImageFiles(
+      String selectedPetType, List<File> imagelist) async {
+    List<UploadTask> uploadTasks = [];
+    List<String> downloadUrlsList = [];
+    String uploadPath = selectedPetType == 'Dog' ? "Dog" : "Cat";
+
     for (var file in imagelist) {
       int randomNumber = random.nextInt(100);
-      if (selectedPetType == 'Dog') {
-        UploadTask uploadTask =
-            storageRef.child("Dog/pets_$petId$randomNumber.jpg").putFile(file);
-        TaskSnapshot storageSnap = await uploadTask;
-        downloadUrl = await storageSnap.ref.getDownloadURL();
-        cntr++;
-        print('Upload $cntr successful');
-        downloadUrlsList.add(downloadUrl);
-      } else if (selectedPetType == 'Cat') {
-        UploadTask uploadTask =
-            storageRef.child("Cat/pets_$petId$randomNumber.jpg").putFile(file);
-        TaskSnapshot storageSnap = await uploadTask;
-        downloadUrl = await storageSnap.ref.getDownloadURL();
-        cntr++;
-        print('Upload $cntr successful');
-        downloadUrlsList.add(downloadUrl);
-      }
+      UploadTask uploadTask = storageRef
+          .child("$uploadPath/pets_$petId$randomNumber.jpg")
+          .putFile(file);
+      uploadTasks.add(uploadTask);
+    }
+
+    List<TaskSnapshot> taskSnapshots = await Future.wait(uploadTasks);
+
+    for (TaskSnapshot storageSnap in taskSnapshots) {
+      String downloadUrl = await storageSnap.ref.getDownloadURL();
+      downloadUrlsList.add(downloadUrl);
     }
 
     return downloadUrlsList;
   }
 
-  createPetInFireStore(List mediaUrls) {
+  createPetInFireStore(List mediaUrls) async {
     User? user = _auth.currentUser;
 
     // writing all the values
@@ -667,20 +630,28 @@ class _AddMyPetsState extends State<AddMyPets> {
     petModel.description = descEditingController.text;
     petModel.mediaUrlList = mediaUrls;
 
-    //Post data to Firebase
-    petRef
-        .doc(user?.uid)
-        .collection("userPets")
-        .doc(petId)
-        .set(petModel.toMap(petId, user?.uid))
-        .then((value) =>
-            //When Successful navigate to animated check
-            Navigator.of(context)
-                .pushReplacement(MaterialPageRoute(
-                    builder: ((context) => const AnimatedCheck())))
-                .then((value) => Fluttertoast.showToast(
-                    msg: "Pet added Successfully",
-                    backgroundColor: colors.accent)));
+    // Create a WriteBatch
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    // Add write operations to the batch
+    DocumentReference userPetDocRef =
+        petRef.doc(user?.uid).collection("userPets").doc(petId);
+    batch.set(userPetDocRef, petModel.toMap(petId, user?.uid));
+
+    // Commit the batch
+    await batch.commit().then((value) {
+      //When Successful navigate to animated check
+      Navigator.of(context)
+          .pushReplacement(
+              MaterialPageRoute(builder: ((context) => const AnimatedCheck())))
+          .then((value) => Fluttertoast.showToast(
+              msg: "Pet added Successfully", backgroundColor: colors.accent));
+    }).catchError((error) {
+      // Handle any errors that occur during the commit
+      print("Error committing batch: $error");
+      Fluttertoast.showToast(
+          msg: "Error adding pet", backgroundColor: colors.accent);
+    });
   }
 
   handleSubmit() async {

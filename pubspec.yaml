@@ -45,6 +45,8 @@ dependencies:
   animated_check: ^1.0.5
   marquee: ^2.2.1
   age_calculator: ^1.0.0
+  firebase_core_platform_interface: 4.5.1
+  firebase_messaging: ^13.0.4 
   
   
   

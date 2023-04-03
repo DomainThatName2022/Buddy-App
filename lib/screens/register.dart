@@ -191,7 +191,7 @@ class _RegisterState extends State<Register> {
       onSaved: (value) {
         passwordEditingController.text = value!;
       },
-      textInputAction: TextInputAction.next,
+      textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         prefixIcon: Icon(
           Icons.lock,
@@ -444,32 +444,101 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  postDetailsToFirestore() async {
-    // calling our firestore
-    // calling our user model
-    // sending these values
+  // postDetailsToFirestore() async {
+  //   // calling our firestore
+  //   // calling our user model
+  //   // sending these values
 
+  //   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  //   User? user = _auth.currentUser;
+
+  //   UserModel userModel = UserModel();
+
+  //   // writing all the values
+  //   userModel.email = user!.email;
+  //   userModel.uid = user.uid;
+  //   userModel.firstName = firstNameEditingController.text;
+  //   userModel.secondName = lastNameEditingController.text;
+  //   userModel.phoneNumber = phoneEditingController.text;
+
+  //   await firebaseFirestore
+  //       .collection("users")
+  //       .doc(user.uid)
+  //       .set(userModel.toMap());
+  //   Fluttertoast.showToast(
+  //       msg: "Account created successfully!", backgroundColor: colors.accent);
+
+  //   Navigator.pushAndRemoveUntil(
+  //       (context),
+  //       MaterialPageRoute(builder: (context) => const RegistrationSuccessful()),
+  //       (route) => false);
+  // }
+
+  // void signUp(String email, String password) async {
+  //   if (_formKey.currentState!.validate()) {
+  //     setState(() {
+  //       loading = true;
+  //     });
+
+  //     try {
+  //       await _auth.createUserWithEmailAndPassword(
+  //           email: email, password: password);
+  //       await postDetailsToFirestore();
+  //     } on FirebaseAuthException catch (error) {
+  //       setState(() {
+  //         loading = false;
+  //       });
+  //       switch (error.code) {
+  //         case "invalid-email":
+  //           errorMessage = "Your email address appears to be malformed.";
+  //           break;
+  //         case "wrong-password":
+  //           errorMessage = "Your password is wrong.";
+  //           break;
+  //         case "user-not-found":
+  //           errorMessage = "User with this email doesn't exist.";
+  //           break;
+  //         case "user-disabled":
+  //           errorMessage = "User with this email has been disabled.";
+  //           break;
+  //         case "too-many-requests":
+  //           errorMessage = "Too many requests";
+  //           break;
+  //         case "operation-not-allowed":
+  //           errorMessage = "Signing in with Email and Password is not enabled.";
+  //           break;
+  //         default:
+  //           errorMessage = "An undefined Error happened.";
+  //       }
+  //       Fluttertoast.showToast(
+  //           msg: errorMessage, backgroundColor: colors.accent);
+  //       debugPrint(error.code);
+  //     }
+  //   }
+  // }
+
+  Future<void> postDetailsToFirestore() async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
 
-    UserModel userModel = UserModel();
-
-    // writing all the values
-    userModel.email = user!.email;
-    userModel.uid = user.uid;
-    userModel.firstName = firstNameEditingController.text;
-    userModel.secondName = lastNameEditingController.text;
-    userModel.phoneNumber = phoneEditingController.text;
+    UserModel userModel = UserModel(
+      email: user!.email,
+      uid: user.uid,
+      firstName: firstNameEditingController.text,
+      secondName: lastNameEditingController.text,
+      phoneNumber: phoneEditingController.text,
+    );
 
     await firebaseFirestore
         .collection("users")
         .doc(user.uid)
         .set(userModel.toMap());
+
     Fluttertoast.showToast(
         msg: "Account created successfully!", backgroundColor: colors.accent);
 
     Navigator.pushAndRemoveUntil(
-        (context),
+        context,
         MaterialPageRoute(builder: (context) => const RegistrationSuccessful()),
         (route) => false);
   }

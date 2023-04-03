@@ -1,7 +1,7 @@
 import 'package:buddy_app/components/custom_action_card.dart';
 import 'package:buddy_app/components/custom_carousel.dart';
 import 'package:buddy_app/components/drawer_list.dart';
-import 'package:buddy_app/components/navigation_drawer.dart';
+import 'package:buddy_app/components/custom_navigation_drawer.dart';
 import 'package:buddy_app/screens/my_pets.dart';
 import 'package:buddy_app/theme/color_palette.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
             child: Column(
           children: const [
-            NavigationDrawer(),
+            CustomNavigationDrawer(),
             DrawerList(),
           ],
         )),

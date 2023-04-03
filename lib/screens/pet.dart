@@ -27,12 +27,13 @@ class _PetState extends State<Pet> {
   final TextEditingController coParentingController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
+  final TextEditingController descEditingController = TextEditingController();
 
   //Co-Parenting Form Key
   final _coParentingFormKey = GlobalKey<FormState>();
   final _details = GlobalKey<FormState>();
 
-  Decisions? _flag = Decisions.Yes;
+  Decisions? _flag = Decisions.No;
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +111,9 @@ class _PetState extends State<Pet> {
               fontSize: 15,
               fontWeight: FontWeight.bold),
         ),
+        // clipBehavior: Clip.antiAlias,
         style: OutlinedButton.styleFrom(
-            primary: colors.dominantTweaked,
+            foregroundColor: colors.dominantTweaked,
             side: BorderSide(
               color: colors.dominantTweaked,
               width: 2,
@@ -144,7 +146,7 @@ class _PetState extends State<Pet> {
         ),
         suffixIcon: Icon(
           Icons.location_pin,
-          color: Colors.red[200],
+          color: colors.dominantTweaked,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -208,6 +210,41 @@ class _PetState extends State<Pet> {
           cursorColor: colors.dominantTweaked,
         ),
       ),
+    );
+
+    //pet description field
+    final descField = TextFormField(
+      minLines: 4,
+      autofocus: false,
+      controller: descEditingController,
+      keyboardType: TextInputType.multiline,
+      maxLines: 6,
+      textCapitalization: TextCapitalization.sentences,
+      onSaved: (value) {
+        descEditingController.text = value!;
+      },
+      textInputAction: TextInputAction.next,
+      decoration: InputDecoration(
+        label: const Text(
+          'Description (Optional)',
+          style: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: colors.textfieldaccent,
+            width: 2,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          gapPadding: 0.0,
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: colors.dominantTweaked, width: 2),
+        ),
+      ),
+      cursorColor: colors.dominantTweaked,
     );
 
     return Scaffold(
@@ -353,7 +390,10 @@ class _PetState extends State<Pet> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 30),
+                    padding: const EdgeInsets.only(
+                      top: 30,
+                      left: 20,
+                    ),
                     child: Container(
                       height: 100,
                       width: 340,
@@ -418,7 +458,6 @@ class _PetState extends State<Pet> {
                       height: 80,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Expanded(
                               child: Padding(
@@ -493,6 +532,11 @@ class _PetState extends State<Pet> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(
+                                          top: 30, right: 40, left: 40),
+                                      child: descField,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
                                           top: 40,
                                           right: 40,
                                           left: 40,
@@ -536,13 +580,13 @@ class _PetState extends State<Pet> {
           return Theme(
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
-                primary: colors.dominant,
+                primary: colors.dominantTweaked,
                 onPrimary: Colors.black,
                 onSurface: Colors.black,
               ),
               textButtonTheme: TextButtonThemeData(
                 style: TextButton.styleFrom(
-                  primary: Colors.black, // button text color
+                  foregroundColor: Colors.black, // button text color
                 ),
               ),
             ),

@@ -23,22 +23,22 @@ class BottomSheet extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.camera),
-              onPressed: () {
-                // takePhoto(ImageSource.camera);
-              },
-              label: Text("Camera"),
-            ),
-            FlatButton.icon(
-              icon: Icon(Icons.image),
-              onPressed: () {
-                // takePhoto(ImageSource.gallery);
-              },
-              label: Text("Gallery"),
-            ),
-          ])
+          // Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          //   FlatButton.icon(
+          //     icon: Icon(Icons.camera),
+          //     onPressed: () {
+          //       // takePhoto(ImageSource.camera);
+          //     },
+          //     label: Text("Camera"),
+          //   ),
+          //   FlatButton.icon(
+          //     icon: Icon(Icons.image),
+          //     onPressed: () {
+          //       // takePhoto(ImageSource.gallery);
+          //     },
+          //     label: Text("Gallery"),
+          //   ),
+          // ])
         ],
       ),
     );

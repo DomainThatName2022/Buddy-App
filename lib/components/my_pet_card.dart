@@ -38,87 +38,85 @@ class MyPetCard extends StatelessWidget {
                 offset: Offset(0, 2),
               )
             ]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 130,
-                width: 150,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: CachedNetworkImage(
-                    imageUrl: "${_pet.mediaUrlList[0]}",
-                    fit: BoxFit.cover,
-                    placeholder: (context, url) =>
-                        Center(child: CircularProgressIndicator()),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+        child: Padding(
+          padding: const EdgeInsets.only(right: 10, left: 10, bottom: 5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Container(
+                    height: 130,
+                    width: 150,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: CachedNetworkImage(
+                        imageUrl: "${_pet.mediaUrlList[0]}",
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Container(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "${_pet.name}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                    )),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Container(
+                  width: 150,
+                  height: 33,
+                  child: Text(
+                    "${_pet.description!.isEmpty ? "No Description to display" : _pet.description}",
+                    style:
+                        TextStyle(fontSize: 14, color: colors.dominantTweaked),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: Container(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "${_pet.name}",
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 3),
-              child: Container(
-                width: 150,
-                height: 33,
-                child: Text(
-                  "${_pet.description!.isEmpty ? "No Description to display" : _pet.description}",
-                  style: TextStyle(fontSize: 14, color: colors.dominant),
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text(
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
                           "${_pet.yearOfBirth}",
                           style:
                               TextStyle(fontSize: 14, color: colors.lightgrey),
                         ),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: _pet.petGender == "Male"
-                                  ? colors.male
-                                  : colors.female,
-                            ),
-                            child: Icon(
-                              _pet.petGender == "Male" ? _male : _female,
-                              size: 20,
-                              color: Colors.white,
-                            )),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: _pet.petGender == "Male"
+                                ? colors.male
+                                : colors.female,
+                          ),
+                          child: Icon(
+                            _pet.petGender == "Male" ? _male : _female,
+                            size: 20,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

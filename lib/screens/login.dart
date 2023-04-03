@@ -330,54 +330,59 @@ class _LoginState extends State<Login> {
     });
   }
 
-  // login function
   void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      //Loading
-      setState(() {
-        loading = true;
-      });
-      try {
-        await _auth
-            .signInWithEmailAndPassword(email: email, password: password)
-            .then((uid) => {
-                  Fluttertoast.showToast(
-                      msg: "Login Successful", backgroundColor: colors.accent),
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const HomePage())),
-                });
-      } on FirebaseAuthException catch (error) {
-        //loading
-        setState(() {
-          loading = false;
-        });
-        switch (error.code) {
-          case "invalid-email":
-            errorMessage = "Your email address appears to be malformed.";
+    setState(() {
+      loading = true;
+    });
 
-            break;
-          case "wrong-password":
-            errorMessage = "Incorrect Password.";
-            break;
-          case "user-not-found":
-            errorMessage = "User with this email doesn't exist.";
-            break;
-          case "user-disabled":
-            errorMessage = "User with this email has been disabled.";
-            break;
-          case "too-many-requests":
-            errorMessage = "Too many requests";
-            break;
-          case "operation-not-allowed":
-            errorMessage = "Signing in with Email and Password is not enabled.";
-            break;
-          default:
-            errorMessage = "Please check your network connection.";
-        }
-        Fluttertoast.showToast(
-            msg: errorMessage!, backgroundColor: colors.accent);
-        debugPrint(error.code);
+    try {
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      Fluttertoast.showToast(
+        msg: "Login Successful",
+        backgroundColor: colors.accent,
+      );
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (error) {
+      switch (error.code) {
+        case "invalid-email":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "wrong-password":
+          errorMessage = "Incorrect Password.";
+          break;
+        case "user-not-found":
+          errorMessage = "User with this email doesn't exist.";
+          break;
+        case "user-disabled":
+          errorMessage = "User with this email has been disabled.";
+          break;
+        case "too-many-requests":
+          errorMessage = "Too many requests";
+          break;
+        case "operation-not-allowed":
+          errorMessage = "Signing in with Email and Password is not enabled.";
+          break;
+        default:
+          errorMessage = "Please check your network connection.";
       }
+
+      Fluttertoast.showToast(
+        msg: errorMessage!,
+        backgroundColor: colors.accent,
+      );
+
+      debugPrint(error.code);
+    } finally {
+      setState(() {
+        loading = false;
+      });
     }
   }
 }
